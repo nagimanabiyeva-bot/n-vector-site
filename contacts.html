@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Контакты — N-VECTOR Consulting Services</title>
+  <meta name="description" content="Контакты ТОО «N-VECTOR Consulting Services» и команды компании.">
+  <meta name="theme-color" content="#0b6e42">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="contacts">
+  <a class="skip-link" href="#main">Перейти к содержанию</a>
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="index.html" aria-label="N-VECTOR — на главную">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 27V5l14 22V9" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><path d="M15 9h4v0M19 5l5 4-5 4" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="5" cy="27" r="2" fill="currentColor"/></svg>
+        <span>N-VECTOR <small>CONSULTING</small></span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Меню</button>
+      <nav id="site-nav" class="site-nav" aria-label="Основная навигация">
+        <a href="index.html" data-nav="home">О компании</a>
+        <a href="team.html" data-nav="team">Команда</a>
+        <a href="projects.html" data-nav="projects">Проекты</a>
+        <a href="events.html" data-nav="events">Мероприятия</a>
+        <a href="programs.html" data-nav="programs">Программы поддержки</a>
+        <a href="contacts.html" data-nav="contacts">Контакты</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page-head">
+      <div class="wrap">
+        <p class="eyebrow">05 / Контакты</p>
+        <h1>Контакты</h1>
+        <p class="lede">Напишите нам — обсудим ваш проект, патентование или подготовку заявки на грант.</p>
+      </div>
+    </section>
+
+    <section class="wrap section" style="border-top:none">
+      <div class="contact-grid">
+        <div>
+          <h2 style="font-size:1.4rem;margin-bottom:1.25rem">Компания</h2>
+          <!-- TODO: впишите реальные e-mail, телефон и адрес вместо пометок «укажите». -->
+          <dl class="kv">
+            <dt>Название</dt><dd>ТОО «N-VECTOR Consulting Services»</dd>
+            <dt>Сайт</dt><dd><a href="https://n-vector.net" target="_blank" rel="noopener">n-vector.net</a></dd>
+            <dt>E-mail</dt><dd><span class="todo">укажите e-mail компании</span></dd>
+            <dt>Телефон</dt><dd><span class="todo">укажите телефон</span></dd>
+            <dt>Адрес</dt><dd><span class="todo">укажите город и адрес</span></dd>
+          </dl>
+        </div>
+        <div>
+          <h2 style="font-size:1.4rem;margin-bottom:1.25rem">Команда</h2>
+          <ul class="people" data-list="team" data-variant="contacts" aria-live="polite">
+            <li><p class="loading">// Загрузка…</p></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <span>© <span data-year></span> ТОО «N-VECTOR Consulting Services»</span>
+      <span class="mono">n-vector.net</span>
+    </div>
+  </footer>
+
+  <script src="data/fallback.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

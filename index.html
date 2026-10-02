@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>N-VECTOR Consulting Services — технологический консалтинг</title>
+  <meta name="description" content="ТОО «N-VECTOR Consulting Services»: сопровождение технологических проектов от идеи до патента, гранта и рынка.">
+  <meta name="theme-color" content="#0b6e42">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="home">
+  <a class="skip-link" href="#main">Перейти к содержанию</a>
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="index.html" aria-label="N-VECTOR — на главную">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 27V5l14 22V9" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><path d="M15 9h4v0M19 5l5 4-5 4" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="5" cy="27" r="2" fill="currentColor"/></svg>
+        <span>N-VECTOR <small>CONSULTING</small></span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Меню</button>
+      <nav id="site-nav" class="site-nav" aria-label="Основная навигация">
+        <a href="index.html" data-nav="home">О компании</a>
+        <a href="team.html" data-nav="team">Команда</a>
+        <a href="projects.html" data-nav="projects">Проекты</a>
+        <a href="events.html" data-nav="events">Мероприятия</a>
+        <a href="programs.html" data-nav="programs">Программы поддержки</a>
+        <a href="contacts.html" data-nav="contacts">Контакты</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="wrap hero" aria-labelledby="hero-title">
+      <div>
+        <p class="eyebrow">ТОО «N-VECTOR Consulting Services»</p>
+        <h1 id="hero-title">Вектор от идеи <em>до&nbsp;работающей технологии</em></h1>
+        <p class="lede">Сопровождаем технологические проекты на всём пути: исследование и разработка, защита интеллектуальной собственности, привлечение грантов и выход на рынок.</p>
+        <div class="hero-actions">
+          <a class="btn" href="projects.html">Наши проекты →</a>
+          <a class="btn btn-ghost" href="programs.html">Программы для стартапов</a>
+        </div>
+      </div>
+
+      <svg class="schematic" viewBox="0 0 560 380" role="img" aria-labelledby="schem-title schem-desc">
+        <title id="schem-title">Схема работы N-VECTOR</title>
+        <desc id="schem-desc">Идея проходит через исследования и разработку, патентование и финансирование, после чего выходит на рынок; в центре — N-VECTOR.</desc>
+
+        <text class="code" x="16" y="24">SCH-01 / PROJECT FLOW</text>
+        <text class="code" x="470" y="24">REV 1.0</text>
+
+        <!-- проводники -->
+        <path class="wire" d="M100 190 H200"/>
+        <path class="wire-active" d="M360 190 H460"/>
+        <path class="wire" d="M280 150 V90 H170"/>
+        <path class="wire" d="M280 150 V90 H390"/>
+        <path class="wire" d="M280 230 V290 H170"/>
+        <path class="wire" d="M280 230 V290 H390"/>
+        <path class="wire-active" d="M100 190 H200"/>
+
+        <!-- центр -->
+        <rect class="node node-core" x="200" y="150" width="160" height="80" rx="2"/>
+        <text class="lbl-core" x="280" y="196" text-anchor="middle">N-VECTOR</text>
+        <circle class="pin" cx="200" cy="190" r="4"/>
+        <circle class="pin" cx="360" cy="190" r="4"/>
+        <circle class="pin" cx="280" cy="150" r="4"/>
+        <circle class="pin" cx="280" cy="230" r="4"/>
+
+        <!-- вход / выход -->
+        <rect class="node" x="20" y="168" width="80" height="44" rx="2"/>
+        <text class="lbl" x="60" y="195" text-anchor="middle">Идея</text>
+        <text class="code" x="20" y="230">IN</text>
+
+        <rect class="node" x="460" y="168" width="84" height="44" rx="2"/>
+        <text class="lbl" x="502" y="195" text-anchor="middle">Рынок</text>
+        <text class="code" x="520" y="230">OUT</text>
+
+        <!-- блоки -->
+        <rect class="node" x="70" y="68" width="100" height="44" rx="2"/>
+        <text class="lbl" x="120" y="95" text-anchor="middle">НИОКР</text>
+        <text class="code" x="70" y="60">U1 · R&amp;D</text>
+
+        <rect class="node" x="390" y="68" width="100" height="44" rx="2"/>
+        <text class="lbl" x="440" y="95" text-anchor="middle">Прототип</text>
+        <text class="code" x="390" y="60">U2 · IoT/ESP32</text>
+
+        <rect class="node" x="70" y="268" width="100" height="44" rx="2"/>
+        <text class="lbl" x="120" y="295" text-anchor="middle">Патент</text>
+        <text class="code" x="70" y="330">U3 · IP</text>
+
+        <rect class="node" x="390" y="268" width="100" height="44" rx="2"/>
+        <text class="lbl" x="440" y="295" text-anchor="middle">Гранты</text>
+        <text class="code" x="390" y="330">U4 · FUND</text>
+
+        <text class="code" x="16" y="364">N-VECTOR CONSULTING SERVICES · KZ</text>
+      </svg>
+    </section>
+
+    <div class="wrap">
+      <div class="facts">
+        <div class="fact"><span class="fact-value">№10734</span><span class="fact-label">Патент на разработку SeedMaster</span></div>
+        <div class="fact"><span class="fact-value">QazInnovations</span><span class="fact-label">Грантовая поддержка проекта</span></div>
+        <div class="fact"><span class="fact-value">ESP32 · OTA</span><span class="fact-label">Собственная IoT-платформа</span></div>
+        <div class="fact"><span class="fact-value">Lab 1212</span><span class="fact-label">Образовательная платформа</span></div>
+      </div>
+    </div>
+
+    <section class="wrap section" aria-labelledby="dir-title" style="border-top:none">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Направления</p>
+          <h2 id="dir-title">Чем мы занимаемся</h2>
+        </div>
+      </div>
+      <ol class="directions">
+        <li>
+          <h3>Технологический консалтинг</h3>
+          <p>Помогаем превратить идею в проект: оценка, планирование исследований и разработки, подготовка к коммерциализации.</p>
+        </li>
+        <li>
+          <h3>Интеллектуальная собственность и гранты</h3>
+          <p>Сопровождение патентования и подготовки заявок на грантовое финансирование — на собственном опыте патента №10734 и гранта QazInnovations.</p>
+        </li>
+        <li>
+          <h3>Разработка IoT-решений</h3>
+          <p>Встроенные системы и устройства на ESP32, включая платформу удалённого обновления прошивки (OTA).</p>
+        </li>
+        <li>
+          <h3>Образование</h3>
+          <p>Laboratory 1212 — образовательная платформа компании.</p>
+        </li>
+        <li>
+          <h3>Навигатор для стартаперов</h3>
+          <p>Собираем действующие конкурсы, обучающие, инкубационные и грантовые программы в одном разделе.</p>
+        </li>
+      </ol>
+    </section>
+
+    <section class="wrap section" aria-labelledby="proj-title">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Проекты</p>
+          <h2 id="proj-title">Последние работы</h2>
+        </div>
+        <a class="btn btn-ghost" href="projects.html">Все проекты →</a>
+      </div>
+      <div class="list" data-list="projects" data-limit="3" aria-live="polite">
+        <p class="loading">// Загрузка…</p>
+      </div>
+    </section>
+
+    <section class="wrap">
+      <div class="cta-band">
+        <div>
+          <h2>Запускаете стартап?</h2>
+          <p>Конкурсы, обучение, инкубаторы и гранты — со ссылками на официальные сайты программ.</p>
+        </div>
+        <a class="btn" href="programs.html">Программы поддержки →</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <span>© <span data-year></span> ТОО «N-VECTOR Consulting Services»</span>
+      <span class="mono">n-vector.net</span>
+    </div>
+  </footer>
+
+  <script src="data/fallback.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
