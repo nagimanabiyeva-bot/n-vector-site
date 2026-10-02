@@ -21,6 +21,8 @@ const SECTIONS = Object.freeze({
       { name: 'name', label: 'Имя и фамилия', required: true, max: 120 },
       { name: 'role', label: 'Роль в компании', required: true, max: 120 },
       { name: 'bio', label: 'Коротко о себе', type: 'textarea', max: 600 },
+      { name: 'tags', label: 'Компетенции', hint: 'Через запятую: Встраиваемые системы, IoT', max: 200 },
+      { name: 'photo', label: 'Ссылка на фото', type: 'url', hint: 'Необязательно. Без фото будут показаны инициалы.', max: 400 },
       { name: 'email', label: 'E-mail', type: 'email', max: 160 },
     ],
   },
@@ -70,6 +72,26 @@ const safeUrl = (value) => {
     return '';
   }
 };
+
+// Фото: внешние http(s)-ссылки или файлы из папки img/ самого сайта.
+const safeImage = (value) => {
+  const raw = String(value || '').trim();
+  return /^img\/[\w\-./]+$/.test(raw) && !raw.includes('..') ? raw : safeUrl(raw);
+};
+
+const initials = (name) =>
+  String(name || '')
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((w) => w[0].toUpperCase())
+    .join('');
+
+const splitTags = (value) =>
+  String(value || '')
+    .split(',')
+    .map((t) => t.trim())
+    .filter(Boolean);
 
 const formatDate = (value) => {
   const raw = String(value || '').trim();
@@ -153,18 +175,36 @@ const linkCell = (url, label) => {
 
 const sampleTag = (item) => (isSample(item) ? ' <span class="tag tag-sample">образец</span>' : '');
 
+const memberPhoto = (p) => {
+  const src = safeImage(p.photo);
+  return src
+    ? `<img src="${escapeHtml(src)}" alt="${escapeHtml(p.name)}" loading="lazy" width="400" height="500">`
+    : `<span class="member-initials" aria-hidden="true">${escapeHtml(initials(p.name))}</span>`;
+};
+
+const tagList = (value) => {
+  const tags = splitTags(value);
+  return tags.length ? `<div class="tags">${tags.map((t) => `<span class="tag">${escapeHtml(t)}</span>`).join('')}</div>` : '';
+};
+
 const RENDERERS = {
   team: (p) => `
-    <article class="row">
-      <div class="row-meta">${escapeHtml(p.role)}</div>
-      <div><div class="row-title">${escapeHtml(p.name)}${sampleTag(p)}</div></div>
-      <p class="row-body">${escapeHtml(p.bio)}</p>
-      ${p.email ? `<a class="row-link" href="mailto:${escapeHtml(p.email)}">${escapeHtml(p.email)}</a>` : '<span></span>'}
+    <article class="member">
+      <div class="member-photo">${memberPhoto(p)}</div>
+      <div class="member-body">
+        <div>
+          <div class="member-name">${escapeHtml(p.name)}${sampleTag(p)}</div>
+          <div class="member-role">${escapeHtml(p.role)}</div>
+        </div>
+        ${p.bio ? `<p class="member-bio">${escapeHtml(p.bio)}</p>` : ''}
+        ${tagList(p.tags)}
+        ${p.email ? `<a class="member-email" href="mailto:${escapeHtml(p.email)}">${escapeHtml(p.email)}</a>` : ''}
+      </div>
     </article>`,
 
   projects: (p) => `
     <article class="row">
-      <div class="row-meta">${p.tag ? `<span class="tag">${escapeHtml(p.tag)}</span>` : ''}${p.year ? `<div style="margin-top:.5rem">${escapeHtml(p.year)}</div>` : ''}</div>
+      <div class="row-meta">${p.tag ? `<span class="tag tag-accent">${escapeHtml(p.tag)}</span>` : ''}${p.year ? `<div>${escapeHtml(p.year)}</div>` : ''}</div>
       <div><div class="row-title">${escapeHtml(p.name)}${sampleTag(p)}</div></div>
       <p class="row-body">${escapeHtml(p.description)}</p>
       ${linkCell(p.link)}
@@ -183,7 +223,7 @@ const RENDERERS = {
 
   programs: (p) => `
     <article class="row">
-      <div class="row-meta"><span class="tag">${escapeHtml(p.type)}</span>${p.deadline ? `<div style="margin-top:.5rem">до ${escapeHtml(formatDate(p.deadline))}</div>` : ''}</div>
+      <div class="row-meta"><span class="tag tag-accent">${escapeHtml(p.type)}</span>${p.deadline ? `<div>до ${escapeHtml(formatDate(p.deadline))}</div>` : ''}</div>
       <div><div class="row-title">${escapeHtml(p.name)}${sampleTag(p)}</div></div>
       <p class="row-body">${escapeHtml(p.description)}</p>
       ${linkCell(p.link, 'Сайт программы')}
@@ -245,6 +285,9 @@ async function populate(container) {
   const visible = limit ? sorted.slice(0, limit) : sorted;
 
   renderSourceNote(section, source);
+  // Блок, который не нужен без записей (например, «Другие проекты»), скрываем целиком.
+  const optionalBlock = container.closest('[data-hide-empty]');
+  if (optionalBlock) optionalBlock.hidden = visible.length === 0;
   if (section === 'programs' && !limit) return setupProgramFilters(container, visible);
   renderList(container, visible, variant);
 }
@@ -290,6 +333,14 @@ function buildField(field) {
   if (field.maxValue) input.max = field.maxValue;
 
   wrap.append(label, input);
+  if (field.hint) {
+    const hint = document.createElement('span');
+    hint.className = 'field-hint';
+    hint.id = `${id}-hint`;
+    hint.textContent = field.hint;
+    input.setAttribute('aria-describedby', hint.id);
+    wrap.append(hint);
+  }
   return wrap;
 }
 

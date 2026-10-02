@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Мероприятия — N-VECTOR Consulting Services</title>
   <meta name="description" content="Мероприятия, в которых участвовала компания N-VECTOR Consulting Services.">
-  <meta name="theme-color" content="#0b6e42">
+  <meta name="theme-color" content="#13336f">
+  <link rel="icon" href="img/logo-mark.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
@@ -16,9 +17,9 @@
 
   <header class="site-header">
     <div class="wrap header-inner">
-      <a class="brand" href="index.html" aria-label="N-VECTOR — на главную">
-        <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 27V5l14 22V9" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><path d="M15 9h4v0M19 5l5 4-5 4" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="5" cy="27" r="2" fill="currentColor"/></svg>
-        <span>N-VECTOR <small>CONSULTING</small></span>
+      <a class="brand" href="index.html" aria-label="N-VECTOR Consulting Services — на главную">
+        <img src="img/logo-mark.svg" alt="" width="30" height="36">
+        <span class="brand-text"><span class="brand-name">N-VECTOR</span><span class="brand-sub">Consulting Services</span></span>
       </a>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Меню</button>
       <nav id="site-nav" class="site-nav" aria-label="Основная навигация">
@@ -35,18 +36,18 @@
   <main id="main">
     <section class="page-head">
       <div class="wrap">
-        <p class="eyebrow">03 / Мероприятия</p>
+        <p class="eyebrow">Мероприятия</p>
         <div class="page-head-row">
           <h1>Мероприятия</h1>
           <button class="btn btn-add" type="button" data-add="events"><span class="plus">+</span> Добавить мероприятие</button>
         </div>
-        <p class="lede">Конференции, выставки, конкурсы и встречи, в которых участвовала компания.</p>
+        <p class="lede">Выставки, конференции, конкурсы и встречи, в которых участвовала компания.</p>
         <p class="source-note" data-source-for="events"></p>
       </div>
     </section>
 
-    <section class="wrap" style="padding-top:2rem" aria-label="Список мероприятий">
-      <div class="list" data-list="events" aria-live="polite"><p class="loading">// Загрузка…</p></div>
+    <section class="wrap" style="padding-top:clamp(1.5rem,3vw,2.5rem)" aria-label="Список мероприятий">
+      <div class="list" data-list="events" aria-live="polite"><p class="loading">Загрузка…</p></div>
     </section>
   </main>
 
@@ -54,8 +55,8 @@
 
   <footer class="site-footer">
     <div class="wrap footer-inner">
+      <span class="footer-brand"><img src="img/logo-mark.svg" alt="" width="22" height="27">N-VECTOR Consulting Services</span>
       <span>© <span data-year></span> ТОО «N-VECTOR Consulting Services»</span>
-      <span class="mono">n-vector.net</span>
     </div>
   </footer>
 

@@ -11,7 +11,7 @@
 const MODERATION = true;
 
 const SCHEMA = {
-  team:     ['id', 'name', 'role', 'bio', 'email', 'status'],
+  team:     ['id', 'name', 'role', 'bio', 'tags', 'photo', 'email', 'status'],
   projects: ['id', 'name', 'tag', 'description', 'year', 'link', 'status'],
   events:   ['id', 'title', 'date', 'location', 'description', 'link', 'status'],
   programs: ['id', 'type', 'name', 'description', 'deadline', 'link', 'status'],
@@ -24,7 +24,7 @@ const REQUIRED = {
   programs: ['type', 'name', 'link'],
 };
 
-const URL_FIELDS = ['link'];
+const URL_FIELDS = ['link', 'photo'];
 const PROGRAM_TYPES = ['Конкурс', 'Обучение', 'Инкубация-Акселерация', 'Финансирование'];
 const MAX_FIELD_LENGTH = 2000;
 

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 214 260" role="img" aria-label="N-VECTOR">
+  <defs>
+    <linearGradient id="nv-top" x1="0" y1="0" x2="212" y2="110" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#12c4d8"/>
+      <stop offset="0.55" stop-color="#0b5f93"/>
+      <stop offset="1" stop-color="#0a1d5e"/>
+    </linearGradient>
+    <linearGradient id="nv-bottom" x1="0" y1="150" x2="213" y2="230" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0d6f9c"/>
+      <stop offset="0.5" stop-color="#0b2a6e"/>
+      <stop offset="1" stop-color="#06063f"/>
+    </linearGradient>
+  </defs>
+  <path d="M0 0 L212 74 L0 146 Z" fill="url(#nv-top)"/>
+  <path d="M0 184 L213 112 L213 258 Z" fill="url(#nv-bottom)"/>
+</svg>

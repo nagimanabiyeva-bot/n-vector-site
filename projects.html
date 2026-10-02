@@ -4,8 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Проекты — N-VECTOR Consulting Services</title>
-  <meta name="description" content="Проекты ТОО «N-VECTOR Consulting Services»: SeedMaster, Laboratory 1212, OTA-платформа для ESP32.">
-  <meta name="theme-color" content="#0b6e42">
+  <meta name="description" content="SeedMaster Systems — электронная система точного высева семян с бортовым комплексом. Патент №10734, грант QazInnovations.">
+  <meta name="theme-color" content="#13336f">
+  <link rel="icon" href="img/logo-mark.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
@@ -16,9 +17,9 @@
 
   <header class="site-header">
     <div class="wrap header-inner">
-      <a class="brand" href="index.html" aria-label="N-VECTOR — на главную">
-        <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 27V5l14 22V9" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><path d="M15 9h4v0M19 5l5 4-5 4" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="5" cy="27" r="2" fill="currentColor"/></svg>
-        <span>N-VECTOR <small>CONSULTING</small></span>
+      <a class="brand" href="index.html" aria-label="N-VECTOR Consulting Services — на главную">
+        <img src="img/logo-mark.svg" alt="" width="30" height="36">
+        <span class="brand-text"><span class="brand-name">N-VECTOR</span><span class="brand-sub">Consulting Services</span></span>
       </a>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Меню</button>
       <nav id="site-nav" class="site-nav" aria-label="Основная навигация">
@@ -35,18 +36,62 @@
   <main id="main">
     <section class="page-head">
       <div class="wrap">
-        <p class="eyebrow">02 / Проекты</p>
+        <p class="eyebrow">Проекты</p>
         <div class="page-head-row">
-          <h1>Проекты</h1>
+          <h1>Ключевой проект компании</h1>
           <button class="btn btn-add" type="button" data-add="projects"><span class="plus">+</span> Добавить проект</button>
         </div>
-        <p class="lede">Разработки, которые компания довела до результата: патенты, платформы, устройства.</p>
-        <p class="source-note" data-source-for="projects"></p>
+        <p class="lede">SeedMaster Systems — разработка электронной системы точного высева семян с бортовым комплексом.</p>
       </div>
     </section>
 
-    <section class="wrap" style="padding-top:2rem" aria-label="Список проектов">
-      <div class="list" data-list="projects" aria-live="polite"><p class="loading">// Загрузка…</p></div>
+    <section class="wrap" style="padding-top:clamp(1.5rem,3vw,2.5rem)" aria-labelledby="sm-title">
+      <article class="feature">
+        <div class="feature-media">
+          <img class="feature-main" src="img/projects/seedmaster-expo-1.webp" alt="Нагима Набиева на агровыставке рядом с посевным комплексом" width="1280" height="585">
+          <img class="feature-thumb" src="img/projects/seedmaster-expo-2.webp" alt="Посевная техника на стенде выставки" width="1277" height="588" loading="lazy">
+        </div>
+        <div class="feature-body">
+          <div class="tags">
+            <span class="tag">Агро</span><span class="tag">IoT</span><span class="tag">Казахстан</span><span class="tag tag-accent">Патент №10734</span>
+          </div>
+          <h2 id="sm-title" style="font-size:clamp(1.6rem,1.3rem + 1.2vw,2.3rem)">SeedMaster Systems</h2>
+          <p>Электронная система точного высева семян с бортовым комплексом — инновационный проект, нацеленный на решение ключевых проблем агросектора Казахстана. Система использует высокоточные датчики для контроля нормы, глубины и равномерности высева в реальном времени.</p>
+          <ul class="checklist">
+            <li>Высокоточные датчики контроля высева</li>
+            <li>Бортовой компьютер с дисплеем агронома</li>
+            <li>Монтаж на стандартные посевные комплексы</li>
+            <li>Инновационный грант QazInnovations — 10,2 млн ₸</li>
+          </ul>
+          <div class="stats">
+            <div><div class="stat-value">6</div><div class="stat-label">месяцев реализации</div></div>
+            <div><div class="stat-value">11,8<small>млн ₸</small></div><div class="stat-label">бюджет проекта</div></div>
+            <div><div class="stat-value">МСБ</div><div class="stat-label">целевой клиент</div></div>
+          </div>
+        </div>
+      </article>
+
+      <div class="gallery">
+        <figure>
+          <img src="img/projects/seedmaster-slide.png" alt="Слайд проекта SeedMaster Systems: бортовой дисплей с показателями давления и площади, плата контроллера в корпусе" width="894" height="502" loading="lazy">
+          <figcaption>Бортовой комплекс и плата контроллера SeedMaster System, 2024</figcaption>
+        </figure>
+        <figure>
+          <img src="img/projects/seedmaster-expo-2.webp" alt="Нагима Набиева у посевного комплекса на выставке" width="1277" height="588" loading="lazy">
+          <figcaption>Презентация проекта на агровыставке</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="wrap section" data-hide-empty hidden aria-labelledby="more-title">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Ещё</p>
+          <h2 id="more-title">Другие проекты</h2>
+        </div>
+      </div>
+      <div class="list" data-list="projects" aria-live="polite"><p class="loading">Загрузка…</p></div>
+      <p class="source-note" data-source-for="projects"></p>
     </section>
   </main>
 
@@ -54,8 +99,8 @@
 
   <footer class="site-footer">
     <div class="wrap footer-inner">
+      <span class="footer-brand"><img src="img/logo-mark.svg" alt="" width="22" height="27">N-VECTOR Consulting Services</span>
       <span>© <span data-year></span> ТОО «N-VECTOR Consulting Services»</span>
-      <span class="mono">n-vector.net</span>
     </div>
   </footer>
 

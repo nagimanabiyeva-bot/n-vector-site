@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Контакты — N-VECTOR Consulting Services</title>
   <meta name="description" content="Контакты ТОО «N-VECTOR Consulting Services» и команды компании.">
-  <meta name="theme-color" content="#0b6e42">
+  <meta name="theme-color" content="#13336f">
+  <link rel="icon" href="img/logo-mark.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
@@ -16,9 +17,9 @@
 
   <header class="site-header">
     <div class="wrap header-inner">
-      <a class="brand" href="index.html" aria-label="N-VECTOR — на главную">
-        <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 27V5l14 22V9" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><path d="M15 9h4v0M19 5l5 4-5 4" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="5" cy="27" r="2" fill="currentColor"/></svg>
-        <span>N-VECTOR <small>CONSULTING</small></span>
+      <a class="brand" href="index.html" aria-label="N-VECTOR Consulting Services — на главную">
+        <img src="img/logo-mark.svg" alt="" width="30" height="36">
+        <span class="brand-text"><span class="brand-name">N-VECTOR</span><span class="brand-sub">Consulting Services</span></span>
       </a>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Меню</button>
       <nav id="site-nav" class="site-nav" aria-label="Основная навигация">
@@ -35,16 +36,16 @@
   <main id="main">
     <section class="page-head">
       <div class="wrap">
-        <p class="eyebrow">05 / Контакты</p>
-        <h1>Контакты</h1>
-        <p class="lede">Напишите нам — обсудим ваш проект, патентование или подготовку заявки на грант.</p>
+        <p class="eyebrow">Контакты</p>
+        <h1>Свяжитесь с нами</h1>
+        <p class="lede">Обсудим разработку электронной системы, автоматизацию агропроцессов, патентование или подготовку заявки на грант.</p>
       </div>
     </section>
 
-    <section class="wrap section" style="border-top:none">
+    <section class="wrap" style="padding-top:clamp(1.5rem,3vw,2.5rem)">
       <div class="contact-grid">
-        <div>
-          <h2 style="font-size:1.4rem;margin-bottom:1.25rem">Компания</h2>
+        <div class="panel">
+          <h2>Компания</h2>
           <!-- TODO: впишите реальные e-mail, телефон и адрес вместо пометок «укажите». -->
           <dl class="kv">
             <dt>Название</dt><dd>ТОО «N-VECTOR Consulting Services»</dd>
@@ -54,10 +55,10 @@
             <dt>Адрес</dt><dd><span class="todo">укажите город и адрес</span></dd>
           </dl>
         </div>
-        <div>
-          <h2 style="font-size:1.4rem;margin-bottom:1.25rem">Команда</h2>
+        <div class="panel">
+          <h2>Команда</h2>
           <ul class="people" data-list="team" data-variant="contacts" aria-live="polite">
-            <li><p class="loading">// Загрузка…</p></li>
+            <li><p class="loading">Загрузка…</p></li>
           </ul>
         </div>
       </div>
@@ -66,8 +67,8 @@
 
   <footer class="site-footer">
     <div class="wrap footer-inner">
+      <span class="footer-brand"><img src="img/logo-mark.svg" alt="" width="22" height="27">N-VECTOR Consulting Services</span>
       <span>© <span data-year></span> ТОО «N-VECTOR Consulting Services»</span>
-      <span class="mono">n-vector.net</span>
     </div>
   </footer>
 
