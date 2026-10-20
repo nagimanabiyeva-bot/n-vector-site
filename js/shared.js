@@ -7,7 +7,7 @@
    данные из data/fallback.js, а админ-панель работает в демо-режиме.
    ========================================================= */
 const CONFIG = Object.freeze({
-  API_URL: '',
+  API_URL: 'https://script.google.com/macros/s/AKfycbzt_80sH6f_LeJrE_9lFm11qeJdv4bvb_fWyzlhp3MWSWMZHQiYK0Jh_a1JnrQ4LFyWAA/exec',
   REQUEST_TIMEOUT_MS: 10000,
 });
 

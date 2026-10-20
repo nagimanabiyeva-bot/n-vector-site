@@ -168,6 +168,19 @@ const AdminStore = (() => {
     demoData = loadDemo();
   }
 
+  // Стартовые записи раздела из data/fallback.js — для переноса в пустую Google Таблицу.
+  const fallbackItems = (section) => ((window.NV_FALLBACK && window.NV_FALLBACK[section]) || []);
+
+  // Переносит стартовые записи раздела в таблицу по одной (порядок сохраняется). Возвращает созданные записи.
+  async function importFallback(section) {
+    const created = [];
+    for (const item of fallbackItems(section)) {
+      const { id, ...data } = item;
+      created.push(await create(section, data));
+    }
+    return created;
+  }
+
   // Текст готового data/fallback.js со всеми разделами (включая черновики — на сайте они не показываются).
   async function exportFallback() {
     const entries = await Promise.all(SECTION_NAMES.map(async (name) => [name, await list(name)]));
@@ -196,6 +209,8 @@ const AdminStore = (() => {
     update,
     remove,
     resetDemo,
+    fallbackItems,
+    importFallback,
     exportFallback,
     get mode() { return mode; },
   });

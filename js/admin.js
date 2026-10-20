@@ -284,12 +284,33 @@ function renderFilters() {
   ).join('');
 }
 
+// Пустой раздел в подключённой таблице — предлагаем перенести стартовые записи из data/fallback.js.
+function importOfferHtml(section) {
+  const count = AdminStore.fallbackItems(section).length;
+  if (AdminStore.mode !== 'remote' || state.data[section].length || !count) return '';
+  return `<div class="admin-notice admin-import">
+    <p>${escapeHtml(tr('admin.importHint', { count }))}</p>
+    <button type="button" class="btn" data-import>${escapeHtml(tr('admin.importBtn'))}</button>
+  </div>`;
+}
+
 function renderList() {
   const items = visibleItems();
   $('#section-title').textContent = tr(`admin.sec.${state.section}`);
   $('#admin-list').innerHTML = items.length
     ? items.map((item) => itemHtml(state.section, item)).join('')
-    : `<p class="list-empty">${escapeHtml(tr(state.data[state.section].length ? 'admin.emptyFilter' : 'admin.emptySection'))}</p>`;
+    : `<p class="list-empty">${escapeHtml(tr(state.data[state.section].length ? 'admin.emptyFilter' : 'admin.emptySection'))}</p>${importOfferHtml(state.section)}`;
+}
+
+async function importSection(button) {
+  const section = state.section;
+  button.textContent = tr('admin.importing');
+  await withBusy(button, async () => {
+    const created = await AdminStore.importFallback(section);
+    state.data[section] = [...state.data[section], ...created];
+    renderAll();
+    toast(tr('admin.toastImported', { count: created.length }));
+  });
 }
 
 function renderAll() {
@@ -338,6 +359,8 @@ function setupList() {
     renderList();
   });
   $('#admin-list').addEventListener('click', (ev) => {
+    const importButton = ev.target.closest('[data-import]');
+    if (importButton) return importSection(importButton);
     const button = ev.target.closest('[data-act]');
     if (!button) return;
     const id = button.closest('[data-id]').dataset.id;

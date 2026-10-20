@@ -117,4 +117,9 @@ window.NV_I18N.en = Object.assign(window.NV_I18N.en || {}, {
   'admin.errGeneric': 'The action could not be completed.',
   'admin.errStorage': 'The browser does not allow saving data (private mode?). Changes will be lost after reload.',
   'admin.errNotFound': 'Entry not found — it may have been deleted already.',
+  /* Moving starter data to the Google Sheet */
+  'admin.importHint': 'This section of the Google Sheet is empty. You can move the site starter entries here ({count}) — with translations and statuses.',
+  'admin.importBtn': 'Move starter data to the sheet',
+  'admin.importing': 'Moving…',
+  'admin.toastImported': 'Entries moved: {count}. They are already on the site.',
 });
