@@ -104,6 +104,11 @@ const AdminStore = (() => {
     const session = readSession();
     if (!session) return false;
     if (session.mode === 'demo') {
+      // Таблица уже подключена — старую демо-сессию не продолжаем, просим войти по ключу.
+      if (hasBackend()) {
+        writeSession(null);
+        return false;
+      }
       startDemo();
       return true;
     }
