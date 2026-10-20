@@ -2,17 +2,17 @@
 
 /*
   Движение по наведению мыши:
-  - карточки (услуги, проект, команда, факты, панели, фото) наклоняются за курсором, по ним бежит блик;
+  - карточки (достижения, услуги, проект, команда, панели, фото) слегка наклоняются за курсором и приподнимаются;
   - кнопки, метки и пункты меню «притягиваются» к курсору;
-  - элементы сцены (голограмма, мониторы, чип, сервер, робот, плата) и плашки смещаются вслед за мышью (параллакс).
+  - фото сцены (первый экран, шапки страниц, сервер, робот) смещаются вслед за мышью (параллакс).
   Значения передаются в CSS через переменные (--rx/--ry, --mx/--my, --tx/--ty, --px/--py).
   На сенсорных экранах и при включённом «уменьшении движения» скрипт ничего не делает.
 */
 (() => {
-  const TILT_SELECTOR = '.scene-piece, .service, .feature, .member, .fact, .panel, .gallery figure, .hero-visual, .cta-band, .list';
-  const MAGNET_SELECTOR = '.btn, .chip, .tag, .site-nav a, .lang-switch button, .nav-toggle, .brand, .stat, .fab';
-  const MAX_TILT_DEG = 6;
-  const WIDE_TILT_DEG = 1.5; // широкие блоки (списки, баннер) наклоняются едва заметно
+  const TILT_SELECTOR = '.pillar, .service, .feature, .member, .panel, .gallery figure, .list';
+  const MAGNET_SELECTOR = '.btn, .chip, .tag, .site-nav a, .lang-switch button, .nav-toggle, .brand, .stat';
+  const MAX_TILT_DEG = 3; // деловой стиль — наклон сдержанный
+  const WIDE_TILT_DEG = 0.8; // широкие блоки (списки) наклоняются едва заметно
   const MAGNET_PX = 8;
 
   const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');

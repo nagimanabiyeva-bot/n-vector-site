@@ -47,7 +47,7 @@ window.NV_I18N.en = {
   'services.title': 'What we do',
   's1.title': 'Electronic systems development',
   's1.text': 'Design and integration of measurement and control electronic systems for industrial and agricultural use.',
-  's1.alt': 'Miniature engineers around a microchip on a circuit board',
+  's1.alt': 'Microchip on a circuit board',
   's2.title': 'Research and patenting',
   's2.text': 'Scientific and technical research, patents and certificates for utility models and software products in Kazakhstan.',
   's2.alt': 'Monitor with research diagrams and analytics',
@@ -136,4 +136,15 @@ window.NV_I18N.en = {
 
   /* Preview */
   'preview.banner': 'Preview: changes from the admin panel (demo mode) — visible only in this browser',
+  /* Top bar, header, footer */
+  'top.contactTitle': 'Get in touch',
+  'top.contactText': 'Company and team contacts',
+  'top.focusTitle': 'R&D · ML · AI',
+  'top.focusText': 'Advanced technologies',
+  'nav.cta': 'Contact us',
+  'services.subtitle': 'Our service portfolio',
+  'services.more': 'Discuss a project →',
+  'pillars.label': 'Key achievements',
+  'band.contactBtn': 'Go to contacts →',
+  'footer.about': 'Research and development in advanced technologies, machine learning and artificial intelligence.',
 };

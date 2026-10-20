@@ -5,20 +5,38 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>N-VECTOR Consulting Services — НИОКР в сфере передовых технологий, машинного обучения и ИИ</title>
   <meta name="description" content="ТОО «N-VECTOR Consulting Services»: руководство научно-исследовательской и опытно-конструкторской деятельностью (НИОКР) в сфере передовых технологий, машинного обучения и искусственного интеллекта. Ключевой проект — SeedMaster Systems.">
-  <meta name="theme-color" content="#05080e">
+  <meta name="theme-color" content="#262a36">
   <link rel="icon" href="img/logo-mark.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@500;600;700;800&family=Montserrat:wght@400;500;600;700&display=swap">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body data-page="home">
   <a class="skip-link" href="#main" data-i18n="skip">Перейти к содержанию</a>
 
+  <div class="topbar">
+    <div class="wrap topbar-inner">
+      <a class="topbar-item" href="contacts.html">
+        <span class="topbar-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1.1-4.4A8 8 0 1 1 21 12Z"/><path d="M8.5 11.5h7M8.5 14.5h4"/></svg></span>
+        <span class="topbar-text"><b data-i18n="top.contactTitle">Связаться с нами</b><small data-i18n="top.contactText">Контакты компании и команды</small></span>
+      </a>
+      <div class="topbar-item topbar-item--focus">
+        <span class="topbar-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/></svg></span>
+        <span class="topbar-text"><b data-i18n="top.focusTitle">НИОКР · ML · ИИ</b><small data-i18n="top.focusText">Передовые технологии</small></span>
+      </div>
+      <div class="lang-switch" role="group" aria-label="Язык сайта" data-i18n-attr="aria-label:lang.label">
+        <button type="button" data-lang="en" lang="en" aria-pressed="false">EN</button>
+        <button type="button" data-lang="ru" lang="ru" aria-pressed="true">RU</button>
+        <button type="button" data-lang="kz" lang="kk" aria-pressed="false">KZ</button>
+      </div>
+    </div>
+  </div>
+
   <header class="site-header">
     <div class="wrap header-inner">
       <a class="brand" href="index.html" aria-label="N-VECTOR Consulting Services — на главную" data-i18n-attr="aria-label:brand.home">
-        <img src="img/logo-mark-dark.svg" alt="" width="30" height="36">
+        <img src="img/logo-mark.svg" alt="" width="34" height="41">
         <span class="brand-text"><span class="brand-name">N-VECTOR</span><span class="brand-sub">Consulting Services</span></span>
       </a>
       <nav id="site-nav" class="site-nav" aria-label="Основная навигация" data-i18n-attr="aria-label:nav.label">
@@ -27,13 +45,8 @@
         <a href="projects.html" data-nav="projects" data-i18n="nav.projects">Проекты</a>
         <a href="events.html" data-nav="events" data-i18n="nav.events">Мероприятия</a>
         <a href="programs.html" data-nav="programs" data-i18n="nav.programs">Программы поддержки</a>
-        <a href="contacts.html" data-nav="contacts" data-i18n="nav.contacts">Контакты</a>
+        <a class="nav-cta" href="contacts.html" data-nav="contacts" data-i18n="nav.cta">Связаться</a>
       </nav>
-      <div class="lang-switch" role="group" aria-label="Язык сайта" data-i18n-attr="aria-label:lang.label">
-        <button type="button" data-lang="en" lang="en" aria-pressed="false">EN</button>
-        <button type="button" data-lang="ru" lang="ru" aria-pressed="true">RU</button>
-        <button type="button" data-lang="kz" lang="kk" aria-pressed="false">KZ</button>
-      </div>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
         <span class="burger" aria-hidden="true"><span></span><span></span><span></span></span>
         <span class="nav-toggle-label" data-i18n="nav.menu">Меню</span>
@@ -42,77 +55,77 @@
   </header>
 
   <main id="main">
-    <div class="hero-band">
-      <section class="wrap hero" aria-labelledby="hero-title">
-        <div>
-          <p class="eyebrow" data-i18n="company">ТОО «N-VECTOR Consulting Services»</p>
-          <h1 id="hero-title" data-i18n-html="home.title">НИОКР в сфере передовых технологий, <em>машинного обучения и ИИ</em></h1>
-          <p class="lede" data-i18n="home.lede">Руководим научно-исследовательской и опытно-конструкторской деятельностью: от исследования и прототипа до патента и работающего решения.</p>
-          <div class="hero-actions">
-            <a class="btn" href="#key-project" data-i18n="home.ctaKey">Ключевой проект →</a>
-            <a class="btn btn-ghost" href="#services" data-i18n="home.ctaServices">Что мы делаем</a>
-          </div>
-        </div>
-
-        <div class="hero-stage">
-          <figure class="hero-visual" style="margin:0">
-            <img src="img/scene/hologram.jpg" alt="Голографическая панель с графиками и аналитическими показателями" data-i18n-attr="alt:home.heroAlt" width="295" height="470" fetchpriority="high">
-          </figure>
-          <img class="scene-piece hero-chip" src="img/scene/gold-chip.jpg" alt="" aria-hidden="true" width="215" height="130">
-          <div class="float-badge b1"><b>№10734</b><span data-i18n="badge.patent">патент</span></div>
-          <div class="float-badge b2"><b>10,2 млн ₸</b><span data-i18n="badge.grant">грант QazInnovations</span></div>
-        </div>
-      </section>
-
-      <div class="wrap" style="padding-bottom:clamp(2.5rem,4vw,4rem)">
-        <div class="facts">
-          <div class="fact"><span class="fact-value">№10734</span><span class="fact-label" data-i18n="fact.patent">Патент — SeedMaster Systems</span></div>
-          <div class="fact"><span class="fact-value">№52050</span><span class="fact-label" data-i18n="fact.certificate">Свидетельство на программный код</span></div>
-          <div class="fact"><span class="fact-value">10,2 млн ₸</span><span class="fact-label" data-i18n="fact.grant">Инновационный грант QazInnovations</span></div>
-          <div class="fact"><span class="fact-value" data-i18n="fact.smeValue">МСБ</span><span class="fact-label" data-i18n="fact.client">Целевой клиент — агробизнес</span></div>
+    <!-- Первый экран: фото на всю ширину со светлой подложкой под текстом -->
+    <section class="hero" aria-labelledby="hero-title">
+      <img class="hero-bg scene-piece" src="img/scene/chip-team.jpg" alt="" aria-hidden="true" width="640" height="380" fetchpriority="high">
+      <div class="wrap hero-inner">
+        <p class="eyebrow" data-i18n="company">ТОО «N-VECTOR Consulting Services»</p>
+        <h1 id="hero-title" data-i18n-html="home.title">НИОКР в сфере передовых технологий, <em>машинного обучения и ИИ</em></h1>
+        <p class="lede" data-i18n="home.lede">Руководим научно-исследовательской и опытно-конструкторской деятельностью: от исследования и прототипа до патента и работающего решения.</p>
+        <div class="hero-actions">
+          <a class="btn" href="#key-project" data-i18n="home.ctaKey">Ключевой проект →</a>
+          <a class="btn btn-ghost" href="#services" data-i18n="home.ctaServices">Что мы делаем</a>
         </div>
       </div>
-    </div>
+    </section>
 
+    <!-- Три тёмные карточки достижений, заходящие на первый экран -->
+    <section class="wrap pillars" aria-label="Ключевые достижения" data-i18n-attr="aria-label:pillars.label">
+      <article class="pillar">
+        <span class="pillar-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h7"/><path d="M14 2v5h5"/><path d="M19 7v4"/><path d="M8 9h4M8 13h5M8 17h3"/><circle cx="18" cy="16" r="3"/><path d="M16.5 18.6 16 22l2-1 2 1-.5-3.4"/></svg></span>
+        <h2 class="pillar-title">№10734</h2>
+        <p data-i18n="fact.patent">Патент — SeedMaster Systems</p>
+      </article>
+      <article class="pillar">
+        <span class="pillar-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="m9 10-2 2 2 2M15 10l2 2-2 2M13 9l-2 6"/></svg></span>
+        <h2 class="pillar-title">№52050</h2>
+        <p data-i18n="fact.certificate">Свидетельство на программный код</p>
+      </article>
+      <article class="pillar">
+        <span class="pillar-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20h18"/><path d="M6 16V11M11 16V7M16 16v-6"/><path d="m4 8 5-4 4 3 7-5"/></svg></span>
+        <h2 class="pillar-title">10,2 млн ₸</h2>
+        <p data-i18n="fact.grant">Инновационный грант QazInnovations</p>
+      </article>
+    </section>
+
+    <!-- Услуги -->
     <section class="section" id="services" aria-labelledby="services-title">
       <div class="wrap">
-        <div class="section-head">
-          <div>
-            <p class="eyebrow" data-i18n="services.eyebrow">Услуги</p>
-            <h2 id="services-title" data-i18n="services.title">Что мы делаем</h2>
-          </div>
+        <div class="section-head section-head--center">
+          <h2 id="services-title" data-i18n="services.title">Что мы делаем</h2>
+          <p class="section-sub" data-i18n="services.subtitle">Наш портфель услуг</p>
         </div>
         <div class="services">
           <article class="service">
-            <div class="service-media"><img src="img/scene/chip-team.jpg" alt="Инженеры-миниатюры вокруг микросхемы на печатной плате" data-i18n-attr="alt:s1.alt" width="640" height="380" loading="lazy"></div>
-            <div class="service-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="6" width="12" height="12" rx="2"/><rect x="9.5" y="9.5" width="5" height="5" rx="0.5"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/></svg>
+            <div class="service-media"><img src="img/scene/gold-chip.jpg" alt="Микросхема на печатной плате" data-i18n-attr="alt:s1.alt" width="215" height="130" loading="lazy"></div>
+            <div class="service-body">
+              <h3 data-i18n="s1.title">Разработка электронных систем</h3>
+              <p data-i18n="s1.text">Проектирование и интеграция измерительных и управляющих электронных комплексов для промышленного и агроприменения.</p>
+              <a class="service-link" href="contacts.html" data-i18n="services.more">Обсудить проект →</a>
             </div>
-            <h3 data-i18n="s1.title">Разработка электронных систем</h3>
-            <p data-i18n="s1.text">Проектирование и интеграция измерительных и управляющих электронных комплексов для промышленного и агроприменения.</p>
           </article>
           <article class="service">
             <div class="service-media"><img src="img/scene/monitor-analytics.jpg" alt="Монитор с исследовательскими схемами и аналитикой" data-i18n-attr="alt:s2.alt" width="300" height="290" loading="lazy"></div>
-            <div class="service-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h7"/><path d="M14 2v5h5"/><path d="M19 7v4"/><path d="M8 9h4M8 13h5M8 17h3"/><circle cx="18" cy="16" r="3"/><path d="M16.5 18.6 16 22l2-1 2 1-.5-3.4"/></svg>
+            <div class="service-body">
+              <h3 data-i18n="s2.title">Научные исследования и патентование</h3>
+              <p data-i18n="s2.text">Проведение НТИ, оформление патентов и свидетельств на полезные модели и программные продукты в РК.</p>
+              <a class="service-link" href="contacts.html" data-i18n="services.more">Обсудить проект →</a>
             </div>
-            <h3 data-i18n="s2.title">Научные исследования и патентование</h3>
-            <p data-i18n="s2.text">Проведение НТИ, оформление патентов и свидетельств на полезные модели и программные продукты в РК.</p>
           </article>
           <article class="service">
             <div class="service-media"><img src="img/scene/monitor-bars.jpg" alt="Монитор с диаграммой показателей мониторинга" data-i18n-attr="alt:s3.alt" width="255" height="335" loading="lazy"></div>
-            <div class="service-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21V11"/><path d="M12 11c0-4 3-6 7-6 0 4-3 6-7 6Z"/><path d="M12 14c0-3-2.5-5-6-5 0 3 2.5 5 6 5Z"/><path d="M4 21h16"/></svg>
+            <div class="service-body">
+              <h3 data-i18n="s3.title">Автоматизация агропроцессов</h3>
+              <p data-i18n="s3.text">Разработка аппаратно-программных решений для точного земледелия: датчики, бортовые комплексы, мониторинг.</p>
+              <a class="service-link" href="contacts.html" data-i18n="services.more">Обсудить проект →</a>
             </div>
-            <h3 data-i18n="s3.title">Автоматизация агропроцессов</h3>
-            <p data-i18n="s3.text">Разработка аппаратно-программных решений для точного земледелия: датчики, бортовые комплексы, мониторинг.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="section section-alt scene-host" id="key-project" aria-labelledby="key-title">
-      <img class="scene-band" src="img/scene/circuit.jpg" alt="" aria-hidden="true" width="736" height="284" loading="lazy">
+    <!-- Ключевой проект -->
+    <section class="section section-alt" id="key-project" aria-labelledby="key-title">
       <div class="wrap">
         <div class="section-head">
           <div>
@@ -149,6 +162,7 @@
       </div>
     </section>
 
+    <!-- Команда -->
     <section class="section" aria-labelledby="team-title">
       <div class="wrap">
         <div class="section-head has-figure">
@@ -163,22 +177,45 @@
       </div>
     </section>
 
-    <section class="wrap">
-      <div class="cta-band has-server">
-        <img class="cta-server" src="img/scene/server.jpg" alt="" aria-hidden="true" width="130" height="340" loading="lazy">
-        <div>
-          <h2 data-i18n="cta.title">Запускаете стартап?</h2>
-          <p data-i18n="cta.text">Конкурсы, обучение, инкубаторы и гранты — со ссылками на официальные сайты программ.</p>
+    <!-- Тёмный блок связи (как «Fale conosco» в образце) -->
+    <section class="dark-band" aria-labelledby="band-title">
+      <img class="dark-band-bg" src="img/scene/circuit.jpg" alt="" aria-hidden="true" width="736" height="284" loading="lazy">
+      <div class="wrap dark-band-inner">
+        <div class="dark-band-col">
+          <h2 id="band-title" data-i18n="contacts.title">Свяжитесь с нами</h2>
+          <p data-i18n="contacts.lede">Обсудим разработку электронной системы, автоматизацию агропроцессов, патентование или подготовку заявки на грант.</p>
+          <a class="btn btn-light" href="contacts.html" data-i18n="band.contactBtn">Перейти к контактам →</a>
         </div>
-        <a class="btn" href="programs.html" data-i18n="cta.btn">Программы поддержки →</a>
+        <div class="dark-band-col dark-band-col--side">
+          <img class="cta-server scene-piece" src="img/scene/server.jpg" alt="" aria-hidden="true" width="130" height="340" loading="lazy">
+          <div>
+            <h3 data-i18n="cta.title">Запускаете стартап?</h3>
+            <p data-i18n="cta.text">Конкурсы, обучение, инкубаторы и гранты — со ссылками на официальные сайты программ.</p>
+            <a class="dark-band-link" href="programs.html" data-i18n="cta.btn">Программы поддержки →</a>
+          </div>
+        </div>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
     <div class="wrap footer-inner">
-      <span class="footer-brand"><img src="img/logo-mark-dark.svg" alt="" width="22" height="27">N-VECTOR Consulting Services</span>
-      <span>© <span data-year></span> <span data-i18n="company">ТОО «N-VECTOR Consulting Services»</span></span>
+      <a class="footer-brand" href="index.html" aria-label="N-VECTOR Consulting Services — на главную" data-i18n-attr="aria-label:brand.home">
+        <img src="img/logo-mark.svg" alt="" width="58" height="70">
+        <span class="brand-text"><span class="brand-name">N-VECTOR</span><span class="brand-sub">Consulting Services</span></span>
+      </a>
+      <div class="footer-info">
+        <p class="footer-company" data-i18n="company">ТОО «N-VECTOR Consulting Services»</p>
+        <p data-i18n="footer.about">Научно-исследовательские и опытно-конструкторские работы в сфере передовых технологий, машинного обучения и искусственного интеллекта.</p>
+        <nav class="footer-nav" aria-label="Основная навигация" data-i18n-attr="aria-label:nav.label">
+          <a href="team.html" data-i18n="nav.team">Команда</a>
+          <a href="projects.html" data-i18n="nav.projects">Проекты</a>
+          <a href="events.html" data-i18n="nav.events">Мероприятия</a>
+          <a href="programs.html" data-i18n="nav.programs">Программы поддержки</a>
+          <a href="contacts.html" data-i18n="nav.contacts">Контакты</a>
+        </nav>
+        <p class="footer-copy">© <span data-year></span> <span data-i18n="company">ТОО «N-VECTOR Consulting Services»</span></p>
+      </div>
     </div>
   </footer>
 
