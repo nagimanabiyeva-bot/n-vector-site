@@ -54,6 +54,9 @@
 
 html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
 
+/* Атрибут hidden всегда скрывает элемент, даже если у класса задан display */
+[hidden] { display: none !important; }
+
 body {
   margin: 0;
   color: var(--ink);
@@ -888,6 +891,19 @@ dialog[open] { animation: rise var(--duration) var(--ease); }
 .footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; font-size: var(--text-sm); }
 .footer-brand { display: inline-flex; align-items: center; gap: 0.6rem; color: #f2f8ff; font-family: var(--font-head); font-weight: 800; letter-spacing: 0.03em; }
 .footer-brand img { width: 22px; height: 27px; filter: drop-shadow(0 0 8px rgba(63, 210, 255, 0.4)); }
+
+/* Плашка предпросмотра правок из демо-режима админки (?preview=1) */
+.preview-banner {
+  position: relative;
+  z-index: 25;
+  padding: 0.55rem var(--gutter);
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.04em;
+  color: #1a1203;
+  background: #f2b84b;
+}
 
 /* ---------- Элементы сцены, разнесённые по сайту ----------
    Каждый кусок исходной картинки (голограмма, мониторы, чип, сервер, робот, плата) живёт в своём разделе,
