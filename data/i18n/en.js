@@ -10,7 +10,6 @@ window.NV_I18N.en = {
   'nav.team': 'Team',
   'nav.projects': 'Projects',
   'nav.events': 'Events',
-  'nav.programs': 'Support programmes',
   'nav.contacts': 'Contacts',
   'lang.label': 'Site language',
   'company': 'N-VECTOR Consulting Services LLP',
@@ -25,8 +24,6 @@ window.NV_I18N.en = {
   'meta.projects.desc': 'SeedMaster Systems — an electronic precision seeding system with an on-board unit. Patent No. 10734, QazInnovations grant.',
   'meta.events.title': 'Events — N-VECTOR Consulting Services',
   'meta.events.desc': 'Events N-VECTOR Consulting Services has taken part in.',
-  'meta.programs.title': 'Startup support programmes — N-VECTOR Consulting Services',
-  'meta.programs.desc': 'Competitions, training, incubation programmes and funding for early-stage founders — with links to official websites.',
   'meta.contacts.title': 'Contacts — N-VECTOR Consulting Services',
   'meta.contacts.desc': 'Contacts of N-VECTOR Consulting Services LLP and its team.',
 
@@ -60,9 +57,6 @@ window.NV_I18N.en = {
   'team.eyebrow': 'Team',
   'team.homeTitle': 'The people behind the projects',
   'team.all': 'Full team →',
-  'cta.title': 'Launching a startup?',
-  'cta.text': 'Competitions, training, incubators and grants — with links to official programme websites.',
-  'cta.btn': 'Support programmes →',
 
   /* SeedMaster Systems */
   'sm.alt1': 'Nagima Nabiyeva at an agricultural exhibition next to a seeding complex',
@@ -98,20 +92,6 @@ window.NV_I18N.en = {
   'events.title': 'Events',
   'events.lede': 'Exhibitions, conferences, competitions and meetings the company has taken part in.',
   'events.listLabel': 'Event list',
-
-  /* Programmes page */
-  'programs.eyebrow': 'For startups',
-  'programs.title': 'Support programmes',
-  'programs.lede': "Competitions, training, incubators, accelerators and grants for those just starting out. Details and terms are on the programmes' official websites.",
-  'programs.filterLabel': 'Filter by programme type',
-  'programs.listLabel': 'Programme list',
-  'programs.site': 'Programme website',
-  'programs.until': 'until {date}',
-  'filter.all': 'All',
-  'ptype.contest': 'Competition',
-  'ptype.training': 'Training',
-  'ptype.incubation': 'Incubation & acceleration',
-  'ptype.funding': 'Funding',
 
   /* Contacts page */
   'contacts.eyebrow': 'Contacts',

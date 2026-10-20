@@ -10,9 +10,6 @@
 const tr = (key, vars) => window.NV_LANG.t(key, vars);
 const loc = (item, field) => window.NV_LANG.localized(item, field);
 
-const FILTER_ALL = 'all';
-const typeLabel = (value) => (PROGRAM_TYPE_KEYS[value] ? tr(PROGRAM_TYPE_KEYS[value]) : value);
-
 // ?preview=1 — показать правки из демо-режима админки (хранятся только в этом браузере).
 const IS_PREVIEW = new URLSearchParams(window.location.search).get('preview') === '1';
 
@@ -120,14 +117,6 @@ const RENDERERS = {
       ${linkCell(e.link)}
     </article>`,
 
-  programs: (p) => `
-    <article class="row">
-      <div class="row-meta"><span class="tag tag-accent">${escapeHtml(typeLabel(p.type))}</span>${p.deadline ? `<div>${escapeHtml(tr('programs.until', { date: formatDate(p.deadline) }))}</div>` : ''}</div>
-      <div><div class="row-title">${escapeHtml(loc(p, 'name'))}${sampleTag(p)}</div></div>
-      <p class="row-body">${escapeHtml(loc(p, 'description'))}</p>
-      ${linkCell(p.link, tr('programs.site'))}
-    </article>`,
-
   contacts: (p) => `
     <li>
       <div><div class="row-title">${escapeHtml(loc(p, 'name'))}${sampleTag(p)}</div><p class="row-sub">${escapeHtml(loc(p, 'role'))}</p></div>
@@ -147,33 +136,6 @@ function renderList(container, items, variant) {
     : `<p class="list-empty">${escapeHtml(tr('list.empty'))}</p>`;
 }
 
-let activeProgramFilter = FILTER_ALL;
-
-function setupProgramFilters(container, items) {
-  const bar = document.querySelector('[data-filters="programs"]');
-  if (!bar) return renderList(container, items, 'programs');
-
-  const types = [FILTER_ALL, ...PROGRAM_TYPES];
-  bar.innerHTML = types
-    .map((type) => {
-      const label = type === FILTER_ALL ? tr('filter.all') : typeLabel(type);
-      return `<button type="button" class="chip" data-type="${escapeHtml(type)}" aria-pressed="false">${escapeHtml(label)}</button>`;
-    })
-    .join('');
-
-  const apply = (type) => {
-    activeProgramFilter = type;
-    bar.querySelectorAll('.chip').forEach((c) => c.setAttribute('aria-pressed', String(c.dataset.type === type)));
-    renderList(container, type === FILTER_ALL ? items : items.filter((p) => p.type === type), 'programs');
-  };
-  // onclick, а не addEventListener: панель перестраивается при смене языка, обработчик не должен дублироваться.
-  bar.onclick = (ev) => {
-    const chip = ev.target.closest('.chip');
-    if (chip) apply(chip.dataset.type);
-  };
-  apply(activeProgramFilter);
-}
-
 async function populate(container) {
   const section = container.dataset.list;
   const variant = container.dataset.variant || section;
@@ -186,7 +148,6 @@ async function populate(container) {
   // Блок, который не нужен без записей (например, «Другие проекты»), скрываем целиком.
   const optionalBlock = container.closest('[data-hide-empty]');
   if (optionalBlock) optionalBlock.hidden = visible.length === 0;
-  if (section === 'programs' && !limit) return setupProgramFilters(container, visible);
   renderList(container, visible, variant);
 }
 

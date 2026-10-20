@@ -55,19 +55,6 @@ const ADMIN_SECTIONS = Object.freeze({
       { name: 'link', label: 'Ссылка', type: 'url', max: 400 },
     ],
   },
-  programs: {
-    label: 'Программы поддержки',
-    newTitle: 'Новая программа поддержки',
-    titleField: 'name',
-    subField: 'type',
-    fields: [
-      { name: 'name', label: 'Название программы', required: true, i18n: true, max: 160 },
-      { name: 'description', label: 'Описание', type: 'textarea', i18n: true, max: 1200 },
-      { name: 'type', label: 'Тип программы', type: 'select', options: PROGRAM_TYPES, required: true },
-      { name: 'deadline', label: 'Дедлайн подачи заявки', type: 'date' },
-      { name: 'link', label: 'Ссылка на официальный сайт', type: 'url', required: true, max: 400 },
-    ],
-  },
 });
 
 const STATUS_FILTERS = Object.freeze([
@@ -78,7 +65,7 @@ const STATUS_FILTERS = Object.freeze([
 
 const state = {
   section: 'team',
-  data: { team: [], projects: [], events: [], programs: [] },
+  data: { team: [], projects: [], events: [] },
   statusFilter: 'all',
   query: '',
   editingId: null,

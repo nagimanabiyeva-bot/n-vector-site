@@ -66,30 +66,5 @@ window.NV_FALLBACK = {
       link: '',
       status: 'published',
     },
-  ],
-
-  programs: [
-    {
-      id: 'g1',
-      type: 'Финансирование',
-      name: 'QazInnovations',
-      description: 'Национальное агентство технологического развития Республики Казахстан: гранты на коммерциализацию технологий и поддержку инновационных проектов.',
-      description_en: 'National Agency for Technological Development of the Republic of Kazakhstan: grants for technology commercialisation and support for innovative projects.',
-      description_kz: 'Қазақстан Республикасының Ұлттық технологиялық даму агенттігі: технологияларды коммерцияландыруға және инновациялық жобаларды қолдауға арналған гранттар.',
-      deadline: '',
-      link: 'https://qazinnovations.gov.kz/',
-      status: 'published',
-    },
-    {
-      id: 'g2',
-      type: 'Инкубация-Акселерация',
-      name: 'Astana Hub',
-      description: 'Международный технопарк IT-стартапов: инкубационные и акселерационные программы, обучение и налоговые льготы для участников.',
-      description_en: 'International technology park for IT startups: incubation and acceleration programmes, training and tax benefits for participants.',
-      description_kz: 'IT-стартаптардың халықаралық технопаркі: инкубациялық және акселерациялық бағдарламалар, оқыту және қатысушыларға салықтық жеңілдіктер.',
-      deadline: '',
-      link: 'https://astanahub.com/',
-      status: 'published',
-    },
-  ],
+  ]
 };

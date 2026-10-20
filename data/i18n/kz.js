@@ -10,7 +10,6 @@ window.NV_I18N.kz = {
   'nav.team': 'Команда',
   'nav.projects': 'Жобалар',
   'nav.events': 'Іс-шаралар',
-  'nav.programs': 'Қолдау бағдарламалары',
   'nav.contacts': 'Байланыс',
   'lang.label': 'Сайт тілі',
   'company': '«N-VECTOR Consulting Services» ЖШС',
@@ -25,8 +24,6 @@ window.NV_I18N.kz = {
   'meta.projects.desc': 'SeedMaster Systems — борттық кешені бар тұқымды дәл себудің электрондық жүйесі. №10734 патент, QazInnovations гранты.',
   'meta.events.title': 'Іс-шаралар — N-VECTOR Consulting Services',
   'meta.events.desc': 'N-VECTOR Consulting Services компаниясы қатысқан іс-шаралар.',
-  'meta.programs.title': 'Стартаптарды қолдау бағдарламалары — N-VECTOR Consulting Services',
-  'meta.programs.desc': 'Жаңадан бастаған стартаперлерге арналған байқаулар, оқыту, инкубациялық бағдарламалар және қаржыландыру — ресми сайттарға сілтемелермен.',
   'meta.contacts.title': 'Байланыс — N-VECTOR Consulting Services',
   'meta.contacts.desc': '«N-VECTOR Consulting Services» ЖШС және компания командасының байланыс деректері.',
 
@@ -60,9 +57,6 @@ window.NV_I18N.kz = {
   'team.eyebrow': 'Команда',
   'team.homeTitle': 'Жобалардың артында кім тұр',
   'team.all': 'Бүкіл команда →',
-  'cta.title': 'Стартап іске қосасыз ба?',
-  'cta.text': 'Байқаулар, оқыту, инкубаторлар мен гранттар — бағдарламалардың ресми сайттарына сілтемелермен.',
-  'cta.btn': 'Қолдау бағдарламалары →',
 
   /* SeedMaster Systems */
   'sm.alt1': 'Нагима Набиева агрокөрмеде себу кешенінің жанында',
@@ -98,20 +92,6 @@ window.NV_I18N.kz = {
   'events.title': 'Іс-шаралар',
   'events.lede': 'Компания қатысқан көрмелер, конференциялар, байқаулар мен кездесулер.',
   'events.listLabel': 'Іс-шаралар тізімі',
-
-  /* «Қолдау бағдарламалары» беті */
-  'programs.eyebrow': 'Стартаперлерге',
-  'programs.title': 'Қолдау бағдарламалары',
-  'programs.lede': 'Жаңадан бастағандарға арналған байқаулар, оқыту, инкубаторлар, акселераторлар мен гранттар. Толық ақпарат пен шарттар — бағдарламалардың ресми сайттарында.',
-  'programs.filterLabel': 'Бағдарлама түрі бойынша сүзгі',
-  'programs.listLabel': 'Бағдарламалар тізімі',
-  'programs.site': 'Бағдарлама сайты',
-  'programs.until': '{date} дейін',
-  'filter.all': 'Барлығы',
-  'ptype.contest': 'Байқау',
-  'ptype.training': 'Оқыту',
-  'ptype.incubation': 'Инкубация-акселерация',
-  'ptype.funding': 'Қаржыландыру',
 
   /* «Байланыс» беті */
   'contacts.eyebrow': 'Байланыс',

@@ -10,7 +10,6 @@ window.NV_I18N.ru = {
   'nav.team': 'Команда',
   'nav.projects': 'Проекты',
   'nav.events': 'Мероприятия',
-  'nav.programs': 'Программы поддержки',
   'nav.contacts': 'Контакты',
   'lang.label': 'Язык сайта',
   'company': 'ТОО «N-VECTOR Consulting Services»',
@@ -25,8 +24,6 @@ window.NV_I18N.ru = {
   'meta.projects.desc': 'SeedMaster Systems — электронная система точного высева семян с бортовым комплексом. Патент №10734, грант QazInnovations.',
   'meta.events.title': 'Мероприятия — N-VECTOR Consulting Services',
   'meta.events.desc': 'Мероприятия, в которых участвовала компания N-VECTOR Consulting Services.',
-  'meta.programs.title': 'Программы поддержки стартапов — N-VECTOR Consulting Services',
-  'meta.programs.desc': 'Конкурсы, обучение, инкубационные программы и финансирование для начинающих стартаперов — со ссылками на официальные сайты.',
   'meta.contacts.title': 'Контакты — N-VECTOR Consulting Services',
   'meta.contacts.desc': 'Контакты ТОО «N-VECTOR Consulting Services» и команды компании.',
 
@@ -60,9 +57,6 @@ window.NV_I18N.ru = {
   'team.eyebrow': 'Команда',
   'team.homeTitle': 'Кто стоит за проектами',
   'team.all': 'Вся команда →',
-  'cta.title': 'Запускаете стартап?',
-  'cta.text': 'Конкурсы, обучение, инкубаторы и гранты — со ссылками на официальные сайты программ.',
-  'cta.btn': 'Программы поддержки →',
 
   /* SeedMaster Systems */
   'sm.alt1': 'Нагима Набиева на агровыставке рядом с посевным комплексом',
@@ -98,20 +92,6 @@ window.NV_I18N.ru = {
   'events.title': 'Мероприятия',
   'events.lede': 'Выставки, конференции, конкурсы и встречи, в которых участвовала компания.',
   'events.listLabel': 'Список мероприятий',
-
-  /* Страница «Программы поддержки» */
-  'programs.eyebrow': 'Для стартаперов',
-  'programs.title': 'Программы поддержки',
-  'programs.lede': 'Конкурсы, обучение, инкубаторы, акселераторы и гранты для тех, кто только начинает. Подробности и условия — на официальных сайтах программ.',
-  'programs.filterLabel': 'Фильтр по типу программы',
-  'programs.listLabel': 'Список программ',
-  'programs.site': 'Сайт программы',
-  'programs.until': 'до {date}',
-  'filter.all': 'Все',
-  'ptype.contest': 'Конкурс',
-  'ptype.training': 'Обучение',
-  'ptype.incubation': 'Инкубация-Акселерация',
-  'ptype.funding': 'Финансирование',
 
   /* Страница «Контакты» */
   'contacts.eyebrow': 'Контакты',

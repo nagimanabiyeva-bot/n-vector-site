@@ -1,7 +1,7 @@
 /**
  * Бэкенд сайта N-VECTOR на Google Apps Script.
  *
- *   GET  ?sheet=team|projects|events|programs   → опубликованные записи листа (JSON), для сайта
+ *   GET  ?sheet=team|projects|events            → опубликованные записи листа (JSON), для сайта
  *   POST {action, key, sheet, id, data}         → действия админ-панели, только с ключом администратора:
  *        login  — проверить ключ
  *        list   — все записи листа (и опубликованные, и черновики)
@@ -22,20 +22,16 @@ const SCHEMA = {
     'description', 'description_en', 'description_kz', 'year', 'link', 'status'],
   events: ['id', 'title', 'title_en', 'title_kz', 'date', 'location', 'location_en', 'location_kz',
     'description', 'description_en', 'description_kz', 'link', 'status'],
-  programs: ['id', 'type', 'name', 'name_en', 'name_kz', 'description', 'description_en', 'description_kz',
-    'deadline', 'link', 'status'],
 };
 
 const REQUIRED = {
   team: ['name', 'role'],
   projects: ['name', 'description'],
   events: ['title', 'date'],
-  programs: ['type', 'name', 'link'],
 };
 
 const URL_FIELDS = ['link', 'photo'];
 const DATE_FIELDS = ['date', 'deadline'];
-const PROGRAM_TYPES = ['Конкурс', 'Обучение', 'Инкубация-Акселерация', 'Финансирование'];
 const STATUSES = ['published', 'pending'];
 const MAX_FIELD_LENGTH = 2000;
 const MIN_ADMIN_KEY_LENGTH = 12;
@@ -250,7 +246,6 @@ function validate_(sheetName, record) {
     const date = record[DATE_FIELDS[j]];
     if (date && !/^\d{4}-\d{2}-\d{2}$/.test(date)) return 'Дата должна быть в формате ГГГГ-ММ-ДД';
   }
-  if (sheetName === 'programs' && PROGRAM_TYPES.indexOf(record.type) === -1) return 'Неизвестный тип программы';
   if (record.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(record.email)) return 'Некорректный e-mail';
   if (record.year && !/^\d{4}$/.test(record.year)) return 'Год — четыре цифры';
   return '';

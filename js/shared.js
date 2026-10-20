@@ -11,16 +11,7 @@ const CONFIG = Object.freeze({
   REQUEST_TIMEOUT_MS: 10000,
 });
 
-// Значения типов программ — как в Google Таблице (по-русски); на сайте показываются переводом.
-const PROGRAM_TYPE_KEYS = Object.freeze({
-  'Конкурс': 'ptype.contest',
-  'Обучение': 'ptype.training',
-  'Инкубация-Акселерация': 'ptype.incubation',
-  'Финансирование': 'ptype.funding',
-});
-const PROGRAM_TYPES = Object.freeze(Object.keys(PROGRAM_TYPE_KEYS));
-
-const SECTION_NAMES = Object.freeze(['team', 'projects', 'events', 'programs']);
+const SECTION_NAMES = Object.freeze(['team', 'projects', 'events']);
 
 // Хранилище демо-режима админки: правки, сделанные без Google Таблицы, видны в предпросмотре сайта (?preview=1).
 const DEMO_STORAGE_KEY = 'nv-admin-demo';
