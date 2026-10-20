@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>N-VECTOR Consulting Services — электроника и автоматизация для агросектора</title>
   <meta name="description" content="ТОО «N-VECTOR Consulting Services»: разработка электронных систем, научные исследования и патентование, автоматизация агропроцессов. Ключевой проект — SeedMaster Systems.">
-  <meta name="theme-color" content="#13336f">
+  <meta name="theme-color" content="#05080e">
   <link rel="icon" href="img/logo-mark.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,7 +18,7 @@
   <header class="site-header">
     <div class="wrap header-inner">
       <a class="brand" href="index.html" aria-label="N-VECTOR Consulting Services — на главную">
-        <img src="img/logo-mark.svg" alt="" width="30" height="36">
+        <img src="img/logo-mark-dark.svg" alt="" width="30" height="36">
         <span class="brand-text"><span class="brand-name">N-VECTOR</span><span class="brand-sub">Consulting Services</span></span>
       </a>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Меню</button>
@@ -46,54 +46,14 @@
           </div>
         </div>
 
-        <svg class="schematic" viewBox="0 0 560 380" role="img" aria-labelledby="schem-title schem-desc">
-          <title id="schem-title">Схема работы N-VECTOR</title>
-          <desc id="schem-desc">Идея проходит через научные исследования, разработку электроники, патентование и грантовое финансирование, после чего внедряется в агросекторе; в центре — N-VECTOR.</desc>
-
-          <text class="code" x="16" y="24">SCH-01 / PROJECT FLOW</text>
-          <text class="code" x="470" y="24">REV 2.0</text>
-
-          <path class="wire" d="M100 190 H200"/>
-          <path class="wire" d="M280 150 V90 H170"/>
-          <path class="wire" d="M280 150 V90 H390"/>
-          <path class="wire" d="M280 230 V290 H170"/>
-          <path class="wire" d="M280 230 V290 H390"/>
-          <path class="wire-active" d="M100 190 H200"/>
-          <path class="wire-active" d="M360 190 H460"/>
-
-          <rect class="node node-core" x="200" y="150" width="160" height="80" rx="10"/>
-          <text class="lbl-core" x="280" y="196" text-anchor="middle">N-VECTOR</text>
-          <circle class="pin" cx="200" cy="190" r="4"/>
-          <circle class="pin" cx="360" cy="190" r="4"/>
-          <circle class="pin" cx="280" cy="150" r="4"/>
-          <circle class="pin" cx="280" cy="230" r="4"/>
-
-          <rect class="node" x="20" y="168" width="80" height="44" rx="8"/>
-          <text class="lbl" x="60" y="195" text-anchor="middle">Идея</text>
-          <text class="code" x="20" y="230">IN</text>
-
-          <rect class="node" x="460" y="168" width="84" height="44" rx="8"/>
-          <text class="lbl" x="502" y="195" text-anchor="middle">Поле</text>
-          <text class="code" x="520" y="230">OUT</text>
-
-          <rect class="node" x="70" y="68" width="100" height="44" rx="8"/>
-          <text class="lbl" x="120" y="95" text-anchor="middle">НТИ</text>
-          <text class="code" x="70" y="60">U1 · R&amp;D</text>
-
-          <rect class="node" x="390" y="68" width="100" height="44" rx="8"/>
-          <text class="lbl" x="440" y="95" text-anchor="middle">Электроника</text>
-          <text class="code" x="390" y="60">U2 · EMBEDDED</text>
-
-          <rect class="node" x="70" y="268" width="100" height="44" rx="8"/>
-          <text class="lbl" x="120" y="295" text-anchor="middle">Патент</text>
-          <text class="code" x="70" y="330">U3 · IP</text>
-
-          <rect class="node" x="390" y="268" width="100" height="44" rx="8"/>
-          <text class="lbl" x="440" y="295" text-anchor="middle">Гранты</text>
-          <text class="code" x="390" y="330">U4 · FUND</text>
-
-          <text class="code" x="16" y="364">N-VECTOR CONSULTING SERVICES · KZ</text>
-        </svg>
+        <div class="hero-stage">
+          <figure class="hero-visual" style="margin:0">
+            <img src="img/scene/hologram.jpg" alt="Голографическая панель с графиками и аналитическими показателями" width="295" height="470" fetchpriority="high">
+          </figure>
+          <img class="scene-piece hero-chip" src="img/scene/gold-chip.jpg" alt="" aria-hidden="true" width="215" height="130">
+          <div class="float-badge b1"><b>№10734</b><span>патент</span></div>
+          <div class="float-badge b2"><b>10,2 млн ₸</b><span>грант QazInnovations</span></div>
+        </div>
       </section>
 
       <div class="wrap" style="padding-bottom:clamp(2.5rem,4vw,4rem)">
@@ -116,6 +76,7 @@
         </div>
         <div class="services">
           <article class="service">
+            <div class="service-media"><img src="img/scene/chip-team.jpg" alt="Инженеры-миниатюры вокруг микросхемы на печатной плате" width="640" height="380" loading="lazy"></div>
             <div class="service-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="6" width="12" height="12" rx="2"/><rect x="9.5" y="9.5" width="5" height="5" rx="0.5"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/></svg>
             </div>
@@ -123,6 +84,7 @@
             <p>Проектирование и интеграция измерительных и управляющих электронных комплексов для промышленного и агроприменения.</p>
           </article>
           <article class="service">
+            <div class="service-media"><img src="img/scene/monitor-analytics.jpg" alt="Монитор с исследовательскими схемами и аналитикой" width="300" height="290" loading="lazy"></div>
             <div class="service-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h7"/><path d="M14 2v5h5"/><path d="M19 7v4"/><path d="M8 9h4M8 13h5M8 17h3"/><circle cx="18" cy="16" r="3"/><path d="M16.5 18.6 16 22l2-1 2 1-.5-3.4"/></svg>
             </div>
@@ -130,6 +92,7 @@
             <p>Проведение НТИ, оформление патентов и свидетельств на полезные модели и программные продукты в РК.</p>
           </article>
           <article class="service">
+            <div class="service-media"><img src="img/scene/monitor-bars.jpg" alt="Монитор с диаграммой показателей мониторинга" width="255" height="335" loading="lazy"></div>
             <div class="service-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21V11"/><path d="M12 11c0-4 3-6 7-6 0 4-3 6-7 6Z"/><path d="M12 14c0-3-2.5-5-6-5 0 3 2.5 5 6 5Z"/><path d="M4 21h16"/></svg>
             </div>
@@ -140,7 +103,8 @@
       </div>
     </section>
 
-    <section class="section section-alt" id="key-project" aria-labelledby="key-title">
+    <section class="section section-alt scene-host" id="key-project" aria-labelledby="key-title">
+      <img class="scene-band" src="img/scene/circuit.jpg" alt="" aria-hidden="true" width="736" height="284" loading="lazy">
       <div class="wrap">
         <div class="section-head">
           <div>
@@ -168,9 +132,9 @@
               <li>Инновационный грант QazInnovations — 10,2 млн ₸</li>
             </ul>
             <div class="stats">
-              <div><div class="stat-value">6</div><div class="stat-label">месяцев реализации</div></div>
-              <div><div class="stat-value">11,8<small>млн ₸</small></div><div class="stat-label">бюджет проекта</div></div>
-              <div><div class="stat-value">МСБ</div><div class="stat-label">целевой клиент</div></div>
+              <div class="stat"><div class="stat-value">6</div><div class="stat-label">месяцев реализации</div></div>
+              <div class="stat"><div class="stat-value">11,8<small>млн ₸</small></div><div class="stat-label">бюджет проекта</div></div>
+              <div class="stat"><div class="stat-value">МСБ</div><div class="stat-label">целевой клиент</div></div>
             </div>
           </div>
         </article>
@@ -179,11 +143,12 @@
 
     <section class="section" aria-labelledby="team-title">
       <div class="wrap">
-        <div class="section-head">
+        <div class="section-head has-figure">
           <div>
             <p class="eyebrow">Команда</p>
             <h2 id="team-title">Кто стоит за проектами</h2>
           </div>
+          <img class="scene-piece head-figure" src="img/scene/robot.jpg" alt="" aria-hidden="true" width="106" height="400" loading="lazy">
           <a class="btn btn-ghost" href="team.html">Вся команда →</a>
         </div>
         <div class="team-grid" data-list="team" aria-live="polite"><p class="loading">Загрузка…</p></div>
@@ -191,7 +156,8 @@
     </section>
 
     <section class="wrap">
-      <div class="cta-band">
+      <div class="cta-band has-server">
+        <img class="cta-server" src="img/scene/server.jpg" alt="" aria-hidden="true" width="130" height="340" loading="lazy">
         <div>
           <h2>Запускаете стартап?</h2>
           <p>Конкурсы, обучение, инкубаторы и гранты — со ссылками на официальные сайты программ.</p>
@@ -203,12 +169,13 @@
 
   <footer class="site-footer">
     <div class="wrap footer-inner">
-      <span class="footer-brand"><img src="img/logo-mark.svg" alt="" width="22" height="27">N-VECTOR Consulting Services</span>
+      <span class="footer-brand"><img src="img/logo-mark-dark.svg" alt="" width="22" height="27">N-VECTOR Consulting Services</span>
       <span>© <span data-year></span> ТОО «N-VECTOR Consulting Services»</span>
     </div>
   </footer>
 
   <script src="data/fallback.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/motion.js"></script>
 </body>
 </html>

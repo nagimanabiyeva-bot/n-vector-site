@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 214 260" role="img" aria-label="N-VECTOR">
+  <!-- Вариант знака для тёмного фона: та же форма, более светлый конец градиента -->
+  <defs>
+    <linearGradient id="nvd-top" x1="0" y1="0" x2="212" y2="110" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#3fe6f2"/>
+      <stop offset="0.55" stop-color="#1f8fd6"/>
+      <stop offset="1" stop-color="#3b5bd9"/>
+    </linearGradient>
+    <linearGradient id="nvd-bottom" x1="0" y1="150" x2="213" y2="230" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#1fb4dc"/>
+      <stop offset="0.5" stop-color="#2f6ad8"/>
+      <stop offset="1" stop-color="#5a55e6"/>
+    </linearGradient>
+  </defs>
+  <path d="M0 0 L212 74 L0 146 Z" fill="url(#nvd-top)"/>
+  <path d="M0 184 L213 112 L213 258 Z" fill="url(#nvd-bottom)"/>
+</svg>
