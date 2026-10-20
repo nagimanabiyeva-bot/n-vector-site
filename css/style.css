@@ -649,15 +649,10 @@ a.topbar-item:hover .topbar-icon { background: rgba(255, 255, 255, 0.18); transf
   filter: grayscale(1);
   pointer-events: none;
 }
-.dark-band-inner { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: clamp(2rem, 6vw, 5rem); align-items: center; }
+.dark-band-inner { position: relative; z-index: 1; }
+.dark-band-col { max-width: 640px; }
 .dark-band h2 { color: #fff; font-size: var(--text-h2); margin-bottom: 0.9rem; }
-.dark-band h3 { color: #fff; font-size: 1.4rem; margin-bottom: 0.6rem; }
 .dark-band p { margin: 0 0 1.5rem; font-size: var(--text-lg); }
-.dark-band-col--side { display: flex; gap: 1.5rem; align-items: center; padding-left: clamp(0rem, 3vw, 2.5rem); border-left: 1px solid rgba(255, 255, 255, 0.14); }
-.dark-band-col--side p { font-size: var(--text-base); margin-bottom: 1rem; }
-.dark-band-link { color: #fff; font-weight: 700; font-size: 0.85rem; letter-spacing: 0.04em; text-transform: uppercase; text-decoration: none; border-bottom: 1px solid rgba(255, 255, 255, 0.4); padding-bottom: 0.15rem; transition: border-color var(--duration-fast); }
-.dark-band-link:hover { border-color: #fff; }
-.cta-server { width: 90px; height: auto; flex: none; border-radius: var(--radius); opacity: 0.9; --depth: 10px; }
 
 /* ---------- Контакты ---------- */
 
@@ -800,8 +795,6 @@ main:has(> .dark-band:last-child) + .site-footer { margin-top: 0; }
 
   .services { grid-template-columns: 1fr; max-width: 640px; }
   .pillars { grid-template-columns: 1fr; gap: 2.5rem; margin-top: -4rem; }
-  .dark-band-inner { grid-template-columns: 1fr; }
-  .dark-band-col--side { padding-left: 0; border-left: none; padding-top: 2rem; border-top: 1px solid rgba(255, 255, 255, 0.14); }
 }
 
 @media (max-width: 860px) {
@@ -835,8 +828,6 @@ main:has(> .dark-band:last-child) + .site-footer { margin-top: 0; }
   .member { grid-template-columns: 1fr; }
   .member-photo { min-height: 300px; }
   .people li { grid-template-columns: 1fr; gap: 0.25rem; }
-  .dark-band-col--side { flex-direction: column; align-items: flex-start; }
-  .cta-server { display: none; }
 
   .footer-inner { grid-template-columns: 1fr; }
 
