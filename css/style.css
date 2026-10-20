@@ -528,19 +528,6 @@ a.topbar-item:hover .topbar-icon { background: rgba(255, 255, 255, 0.18); transf
 
 /* ---------- Команда ---------- */
 
-.section-head.has-figure { position: relative; }
-.head-figure {
-  width: 56px;
-  height: auto;
-  border-radius: var(--radius);
-  margin-left: auto;
-  margin-bottom: -0.4rem;
-  filter: grayscale(0.3);
-  -webkit-mask-image: linear-gradient(180deg, #000 70%, transparent);
-  mask-image: linear-gradient(180deg, #000 70%, transparent);
-  --depth: 12px;
-}
-
 .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 480px), 1fr)); gap: clamp(1rem, 2vw, 1.75rem); }
 .member {
   display: grid;
@@ -822,7 +809,6 @@ main:has(> .dark-band:last-child) + .site-footer { margin-top: 0; }
   .feature-media { min-height: 240px; }
   .row { grid-template-columns: minmax(0, 1fr); gap: 0.5rem; }
   .page-deco { width: 70%; opacity: 0.35; }
-  .head-figure { display: none; }
   .hero::after { background: linear-gradient(180deg, rgba(247, 245, 242, 0.93), rgba(247, 245, 242, 0.85)); }
 }
 
