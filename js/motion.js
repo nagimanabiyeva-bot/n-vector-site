@@ -10,7 +10,7 @@
 */
 (() => {
   const TILT_SELECTOR = '.scene-piece, .service, .feature, .member, .fact, .panel, .gallery figure, .hero-visual, .cta-band, .list';
-  const MAGNET_SELECTOR = '.btn, .chip, .tag, .site-nav a, .nav-toggle, .brand, .stat, .fab';
+  const MAGNET_SELECTOR = '.btn, .chip, .tag, .site-nav a, .lang-switch button, .nav-toggle, .brand, .stat, .fab';
   const MAX_TILT_DEG = 6;
   const WIDE_TILT_DEG = 1.5; // широкие блоки (списки, баннер) наклоняются едва заметно
   const MAGNET_PX = 8;

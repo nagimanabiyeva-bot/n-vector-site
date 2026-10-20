@@ -186,7 +186,7 @@ h1, h2, h3 {
 .brand-name { font-family: var(--font-head); font-weight: 800; font-size: 1.15rem; letter-spacing: 0.04em; color: #f2f8ff; }
 .brand-sub { font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.12em; color: var(--accent); text-transform: uppercase; }
 
-.site-nav { display: flex; gap: 0.15rem; flex-wrap: wrap; }
+.site-nav { display: flex; gap: 0.15rem; flex-wrap: wrap; margin-left: auto; }
 .site-nav a {
   color: var(--ink-2);
   text-decoration: none;
@@ -199,35 +199,69 @@ h1, h2, h3 {
 .site-nav a:hover { color: #fff; background: var(--accent-soft); border-color: var(--line-strong); }
 .site-nav a[aria-current="page"] { color: var(--accent-ink); background: var(--accent); box-shadow: 0 0 22px -4px rgba(63, 210, 255, 0.7); }
 
+/* Переключатель языков EN / RU / KZ — правый верхний угол */
+.lang-switch {
+  display: inline-flex;
+  flex: none;
+  padding: 3px;
+  gap: 2px;
+  border-radius: 999px;
+  border: 1px solid var(--line-strong);
+  background: rgba(14, 26, 42, 0.6);
+}
+.lang-switch button {
+  font: inherit;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  min-width: 2.4rem;
+  padding: 0.38rem 0.55rem;
+  border: none;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink-2);
+  cursor: pointer;
+  transform: translate3d(var(--tx, 0px), var(--ty, 0px), 0);
+  transition: transform 450ms var(--spring), background var(--duration-fast), color var(--duration-fast), box-shadow var(--duration-fast);
+}
+.lang-switch button:hover { color: #fff; background: var(--accent-soft); }
+.lang-switch button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); box-shadow: 0 0 18px -4px rgba(63, 210, 255, 0.8); }
+
 .nav-toggle {
   display: none;
+  align-items: center;
+  gap: 0.55rem;
+  flex: none;
   font: inherit;
   font-size: var(--text-sm);
   font-weight: 500;
   background: var(--surface);
   color: var(--ink);
   border: 1px solid var(--line-strong);
-  padding: 0.45rem 0.95rem;
+  padding: 0.5rem 0.9rem;
   border-radius: 999px;
   cursor: pointer;
 }
-
-@media (max-width: 960px) {
-  .nav-toggle { display: inline-block; }
-  .site-nav {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 100%;
-    flex-direction: column;
-    background: rgba(7, 12, 20, 0.97);
-    border-bottom: 1px solid var(--line);
-    padding: 0.75rem var(--gutter) 1rem;
-    display: none;
-  }
-  .site-nav.is-open { display: flex; }
-  .site-nav a { padding: 0.75rem 1rem; }
+.burger { position: relative; width: 18px; height: 12px; display: inline-block; }
+.burger span {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+  transition: transform var(--duration) var(--ease), opacity var(--duration-fast), top var(--duration) var(--ease);
 }
+.burger span:nth-child(1) { top: 0; }
+.burger span:nth-child(2) { top: 5px; }
+.burger span:nth-child(3) { top: 10px; }
+.nav-toggle[aria-expanded="true"] { border-color: var(--accent); color: var(--accent); }
+.nav-toggle[aria-expanded="true"] .burger span:nth-child(1) { top: 5px; transform: rotate(45deg); }
+.nav-toggle[aria-expanded="true"] .burger span:nth-child(2) { opacity: 0; }
+.nav-toggle[aria-expanded="true"] .burger span:nth-child(3) { top: 5px; transform: rotate(-45deg); }
+
+
 
 /* ---------- Общие блоки ---------- */
 
@@ -977,6 +1011,101 @@ dialog[open] { animation: rise var(--duration) var(--ease); }
   .cta-band.has-server { padding-left: clamp(1.75rem, 4vw, 3rem); }
 }
 
+/* ---------- Мобильный режим (телефоны и планшеты) ---------- */
+
+@media (max-width: 1120px) {
+  .nav-toggle { display: inline-flex; }
+  .lang-switch { margin-left: auto; }
+  .site-nav {
+    /* шапка с backdrop-filter — контейнер для позиционирования, поэтому высоту задаём явно */
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    height: calc(100dvh - 72px);
+    margin: 0;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 0.35rem;
+    background: var(--bg);
+    border-top: 1px solid var(--line);
+    padding: 1.25rem var(--gutter) calc(1.5rem + env(safe-area-inset-bottom, 0px));
+    overflow-y: auto;
+    display: none;
+  }
+  .site-nav.is-open { display: flex; animation: rise var(--duration) var(--ease); }
+  .site-nav a {
+    font-family: var(--font-head);
+    font-size: 1.35rem;
+    font-weight: 700;
+    padding: 0.9rem 1.1rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--line);
+    background: rgba(14, 26, 42, 0.55);
+  }
+  .site-nav a[aria-current="page"] { border-color: var(--accent); }
+  .nav-open, .nav-open body { overflow: hidden; }
+}
+
+@media (max-width: 760px) {
+  :root { --space-section: 3rem; }
+  .header-inner { min-height: 64px; gap: 0.6rem; }
+  .site-nav { height: calc(100dvh - 64px); }
+  .brand img { width: 26px; height: 31px; }
+  .brand-name { font-size: 1.02rem; }
+  .brand-sub { font-size: 0.58rem; }
+
+  .hero { padding-block: 2rem 2.5rem; gap: 2.25rem; }
+  .hero-actions { flex-direction: column; align-items: stretch; }
+  .hero-actions .btn, .page-head-row .btn-add { justify-content: center; width: 100%; }
+  .hero-stage { max-width: 320px; }
+  .float-badge { padding: 0.55rem 0.75rem; }
+  .float-badge b { font-size: 1.05rem; }
+
+  .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .fact { padding: 1rem; }
+  .fact-value { font-size: 1.2rem; }
+
+  .section-head { margin-bottom: 1.5rem; }
+  .section-head .btn { width: 100%; justify-content: center; }
+
+  .stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.75rem; }
+  .stat-value { font-size: 1.5rem; }
+
+  /* Фильтры программ — горизонтальная лента с прокруткой пальцем */
+  .filters { flex-wrap: nowrap; overflow-x: auto; margin-inline: calc(var(--gutter) * -1); padding: 0 var(--gutter) 0.4rem; scrollbar-width: none; }
+  .filters::-webkit-scrollbar { display: none; }
+  .chip { flex: none; padding: 0.6rem 1rem; }
+
+  .row { padding: 1.25rem 0; }
+  .row-link { padding: 0.35rem 0; }
+
+  .fab { width: 54px; height: 54px; font-size: 1.7rem; }
+
+  /* Форма «+» — «шторка» снизу экрана */
+  dialog.add-dialog {
+    width: 100%;
+    max-width: none;
+    max-height: 92dvh;
+    margin: auto 0 0;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    border-bottom: none;
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  .form-actions { flex-direction: column-reverse; }
+  .form-actions .btn { width: 100%; justify-content: center; }
+  .field input, .field textarea, .field select { font-size: 16px; padding: 0.8rem 0.85rem; } /* 16px — iOS не увеличивает страницу при вводе */
+
+  .footer-inner { flex-direction: column; align-items: flex-start; }
+}
+
+@media (max-width: 420px) {
+  .nav-toggle-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .nav-toggle { padding: 0.6rem 0.7rem; }
+  .lang-switch button { min-width: 2.1rem; padding: 0.38rem 0.4rem; }
+  .brand-sub { display: none; }
+}
+
 /* ---------- Без анимаций для тех, кто их отключил ---------- */
 
 @media (prefers-reduced-motion: reduce) {
@@ -986,7 +1115,7 @@ dialog[open] { animation: rise var(--duration) var(--ease); }
     transition-duration: 1ms !important;
   }
   .service, .feature, .member, .fact, .panel, .gallery figure, .hero-visual, .cta-band, .list,
-  .btn, .chip, .tag, .site-nav a, .nav-toggle, .brand, .stat, .service-icon, .float-badge,
+  .btn, .chip, .tag, .site-nav a, .lang-switch button, .nav-toggle, .brand, .stat, .service-icon, .float-badge,
   .scene-piece, .scene-band { transform: none !important; }
   .cta-server { transform: translateY(-50%) !important; }
 }

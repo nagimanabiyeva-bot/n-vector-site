@@ -11,49 +11,62 @@ const CONFIG = Object.freeze({
   REQUEST_TIMEOUT_MS: 10000,
 });
 
-const PROGRAM_TYPES = Object.freeze(['Конкурс', 'Обучение', 'Инкубация-Акселерация', 'Финансирование']);
+// Переводы — из js/i18n.js (подключается раньше этого файла).
+const tr = (key, vars) => window.NV_LANG.t(key, vars);
+const loc = (item, field) => window.NV_LANG.localized(item, field);
 
-// Поля форм «+» по разделам — совпадают со столбцами листов Google Таблицы.
+// Значения типов хранятся в таблице по-русски; на сайте показываются переводом.
+const PROGRAM_TYPE_KEYS = Object.freeze({
+  'Конкурс': 'ptype.contest',
+  'Обучение': 'ptype.training',
+  'Инкубация-Акселерация': 'ptype.incubation',
+  'Финансирование': 'ptype.funding',
+});
+const PROGRAM_TYPES = Object.freeze(Object.keys(PROGRAM_TYPE_KEYS));
+const FILTER_ALL = 'all';
+const typeLabel = (value) => (PROGRAM_TYPE_KEYS[value] ? tr(PROGRAM_TYPE_KEYS[value]) : value);
+
+// Поля форм «+» по разделам — совпадают со столбцами листов Google Таблицы. label/hint — ключи словаря.
 const SECTIONS = Object.freeze({
   team: {
-    title: 'Новый участник команды',
+    title: 'form.team.title',
     fields: [
-      { name: 'name', label: 'Имя и фамилия', required: true, max: 120 },
-      { name: 'role', label: 'Роль в компании', required: true, max: 120 },
-      { name: 'bio', label: 'Коротко о себе', type: 'textarea', max: 600 },
-      { name: 'tags', label: 'Компетенции', hint: 'Через запятую: Встраиваемые системы, IoT', max: 200 },
-      { name: 'photo', label: 'Ссылка на фото', type: 'url', hint: 'Необязательно. Без фото будут показаны инициалы.', max: 400 },
-      { name: 'email', label: 'E-mail', type: 'email', max: 160 },
+      { name: 'name', label: 'f.fullName', required: true, max: 120 },
+      { name: 'role', label: 'f.role', required: true, max: 120 },
+      { name: 'bio', label: 'f.bio', type: 'textarea', max: 600 },
+      { name: 'tags', label: 'f.tags', hint: 'f.tagsHint', max: 200 },
+      { name: 'photo', label: 'f.photo', type: 'url', hint: 'f.photoHint', max: 400 },
+      { name: 'email', label: 'f.email', type: 'email', max: 160 },
     ],
   },
   projects: {
-    title: 'Новый проект',
+    title: 'form.projects.title',
     fields: [
-      { name: 'name', label: 'Название проекта', required: true, max: 160 },
-      { name: 'tag', label: 'Метка (например, «Патент №…», «IoT»)', max: 60 },
-      { name: 'year', label: 'Год', type: 'number', min: 1990, maxValue: 2100 },
-      { name: 'description', label: 'Описание', type: 'textarea', required: true, max: 1200 },
-      { name: 'link', label: 'Ссылка', type: 'url', max: 400 },
+      { name: 'name', label: 'f.projectName', required: true, max: 160 },
+      { name: 'tag', label: 'f.tag', max: 60 },
+      { name: 'year', label: 'f.year', type: 'number', min: 1990, maxValue: 2100 },
+      { name: 'description', label: 'f.description', type: 'textarea', required: true, max: 1200 },
+      { name: 'link', label: 'f.link', type: 'url', max: 400 },
     ],
   },
   events: {
-    title: 'Новое мероприятие',
+    title: 'form.events.title',
     fields: [
-      { name: 'title', label: 'Название мероприятия', required: true, max: 160 },
-      { name: 'date', label: 'Дата', type: 'date', required: true },
-      { name: 'location', label: 'Место проведения', max: 160 },
-      { name: 'description', label: 'Что делала компания', type: 'textarea', max: 1200 },
-      { name: 'link', label: 'Ссылка', type: 'url', max: 400 },
+      { name: 'title', label: 'f.eventTitle', required: true, max: 160 },
+      { name: 'date', label: 'f.date', type: 'date', required: true },
+      { name: 'location', label: 'f.location', max: 160 },
+      { name: 'description', label: 'f.eventDesc', type: 'textarea', max: 1200 },
+      { name: 'link', label: 'f.link', type: 'url', max: 400 },
     ],
   },
   programs: {
-    title: 'Новая программа поддержки',
+    title: 'form.programs.title',
     fields: [
-      { name: 'type', label: 'Тип программы', type: 'select', options: PROGRAM_TYPES, required: true },
-      { name: 'name', label: 'Название программы', required: true, max: 160 },
-      { name: 'description', label: 'Описание', type: 'textarea', max: 1200 },
-      { name: 'deadline', label: 'Дедлайн подачи заявки', type: 'date' },
-      { name: 'link', label: 'Ссылка на официальный сайт', type: 'url', required: true, max: 400 },
+      { name: 'type', label: 'f.type', type: 'select', options: PROGRAM_TYPES, required: true },
+      { name: 'name', label: 'f.programName', required: true, max: 160 },
+      { name: 'description', label: 'f.description', type: 'textarea', max: 1200 },
+      { name: 'deadline', label: 'f.deadline', type: 'date' },
+      { name: 'link', label: 'f.officialLink', type: 'url', required: true, max: 400 },
     ],
   },
 });
@@ -101,13 +114,13 @@ const formatDate = (value) => {
 
 const isPublished = (item) => String(item.status || '').trim().toLowerCase() === 'published';
 
-const isSample = (item) => /образец|пример/i.test(`${item.name || ''} ${item.title || ''}`);
+const isSample = (item) => /образец|пример|sample|үлгі/i.test(`${item.name || ''} ${item.title || ''}`);
 
 const linkLabel = (url) => {
   try {
     return new URL(url).hostname.replace(/^www\./, '');
   } catch {
-    return 'Ссылка';
+    return tr('list.link');
   }
 };
 
@@ -151,16 +164,14 @@ async function loadSection(name) {
 }
 
 async function submitEntry(section, data, honeypot) {
-  if (!CONFIG.API_URL) {
-    throw new Error('Google Таблица ещё не подключена (пустой API_URL в js/main.js). Запись не отправлена.');
-  }
+  if (!CONFIG.API_URL) throw new Error(tr('form.noBackend'));
   // text/plain — «простой» запрос без CORS-preflight, который Apps Script не поддерживает.
   const json = await fetchWithTimeout(CONFIG.API_URL, {
     method: 'POST',
     headers: { 'Content-Type': 'text/plain;charset=utf-8' },
     body: JSON.stringify({ sheet: section, data, website: honeypot }),
   });
-  if (!json.ok) throw new Error(json.error || 'Не удалось сохранить запись.');
+  if (!json.ok) throw new Error(json.error || tr('form.saveFailed'));
   return json;
 }
 
@@ -173,12 +184,12 @@ const linkCell = (url, label) => {
     : '<span></span>';
 };
 
-const sampleTag = (item) => (isSample(item) ? ' <span class="tag tag-sample">образец</span>' : '');
+const sampleTag = (item) => (isSample(item) ? ` <span class="tag tag-sample">${escapeHtml(tr('list.sample'))}</span>` : '');
 
 const memberPhoto = (p) => {
   const src = safeImage(p.photo);
   return src
-    ? `<img src="${escapeHtml(src)}" alt="${escapeHtml(p.name)}" loading="lazy" width="400" height="500">`
+    ? `<img src="${escapeHtml(src)}" alt="${escapeHtml(loc(p, 'name'))}" loading="lazy" width="400" height="500">`
     : `<span class="member-initials" aria-hidden="true">${escapeHtml(initials(p.name))}</span>`;
 };
 
@@ -193,20 +204,20 @@ const RENDERERS = {
       <div class="member-photo">${memberPhoto(p)}</div>
       <div class="member-body">
         <div>
-          <div class="member-name">${escapeHtml(p.name)}${sampleTag(p)}</div>
-          <div class="member-role">${escapeHtml(p.role)}</div>
+          <div class="member-name">${escapeHtml(loc(p, 'name'))}${sampleTag(p)}</div>
+          <div class="member-role">${escapeHtml(loc(p, 'role'))}</div>
         </div>
-        ${p.bio ? `<p class="member-bio">${escapeHtml(p.bio)}</p>` : ''}
-        ${tagList(p.tags)}
+        ${loc(p, 'bio') ? `<p class="member-bio">${escapeHtml(loc(p, 'bio'))}</p>` : ''}
+        ${tagList(loc(p, 'tags'))}
         ${p.email ? `<a class="member-email" href="mailto:${escapeHtml(p.email)}">${escapeHtml(p.email)}</a>` : ''}
       </div>
     </article>`,
 
   projects: (p) => `
     <article class="row">
-      <div class="row-meta">${p.tag ? `<span class="tag tag-accent">${escapeHtml(p.tag)}</span>` : ''}${p.year ? `<div>${escapeHtml(p.year)}</div>` : ''}</div>
-      <div><div class="row-title">${escapeHtml(p.name)}${sampleTag(p)}</div></div>
-      <p class="row-body">${escapeHtml(p.description)}</p>
+      <div class="row-meta">${loc(p, 'tag') ? `<span class="tag tag-accent">${escapeHtml(loc(p, 'tag'))}</span>` : ''}${p.year ? `<div>${escapeHtml(p.year)}</div>` : ''}</div>
+      <div><div class="row-title">${escapeHtml(loc(p, 'name'))}${sampleTag(p)}</div></div>
+      <p class="row-body">${escapeHtml(loc(p, 'description'))}</p>
       ${linkCell(p.link)}
     </article>`,
 
@@ -214,25 +225,25 @@ const RENDERERS = {
     <article class="row">
       <div class="row-meta">${escapeHtml(formatDate(e.date))}</div>
       <div>
-        <div class="row-title">${escapeHtml(e.title)}${sampleTag(e)}</div>
-        ${e.location ? `<div class="row-sub">${escapeHtml(e.location)}</div>` : ''}
+        <div class="row-title">${escapeHtml(loc(e, 'title'))}${sampleTag(e)}</div>
+        ${loc(e, 'location') ? `<div class="row-sub">${escapeHtml(loc(e, 'location'))}</div>` : ''}
       </div>
-      <p class="row-body">${escapeHtml(e.description)}</p>
+      <p class="row-body">${escapeHtml(loc(e, 'description'))}</p>
       ${linkCell(e.link)}
     </article>`,
 
   programs: (p) => `
     <article class="row">
-      <div class="row-meta"><span class="tag tag-accent">${escapeHtml(p.type)}</span>${p.deadline ? `<div>до ${escapeHtml(formatDate(p.deadline))}</div>` : ''}</div>
-      <div><div class="row-title">${escapeHtml(p.name)}${sampleTag(p)}</div></div>
-      <p class="row-body">${escapeHtml(p.description)}</p>
-      ${linkCell(p.link, 'Сайт программы')}
+      <div class="row-meta"><span class="tag tag-accent">${escapeHtml(typeLabel(p.type))}</span>${p.deadline ? `<div>${escapeHtml(tr('programs.until', { date: formatDate(p.deadline) }))}</div>` : ''}</div>
+      <div><div class="row-title">${escapeHtml(loc(p, 'name'))}${sampleTag(p)}</div></div>
+      <p class="row-body">${escapeHtml(loc(p, 'description'))}</p>
+      ${linkCell(p.link, tr('programs.site'))}
     </article>`,
 
   contacts: (p) => `
     <li>
-      <div><div class="row-title">${escapeHtml(p.name)}${sampleTag(p)}</div><p class="row-sub">${escapeHtml(p.role)}</p></div>
-      <div>${p.email ? `<a href="mailto:${escapeHtml(p.email)}">${escapeHtml(p.email)}</a>` : '<span class="todo">e-mail не указан</span>'}</div>
+      <div><div class="row-title">${escapeHtml(loc(p, 'name'))}${sampleTag(p)}</div><p class="row-sub">${escapeHtml(loc(p, 'role'))}</p></div>
+      <div>${p.email ? `<a href="mailto:${escapeHtml(p.email)}">${escapeHtml(p.email)}</a>` : `<span class="todo">${escapeHtml(tr('contacts.noEmail'))}</span>`}</div>
     </li>`,
 };
 
@@ -245,34 +256,41 @@ function renderList(container, items, variant) {
   const render = RENDERERS[variant];
   container.innerHTML = items.length
     ? items.map(render).join('')
-    : '<p class="list-empty">// Пока нет опубликованных записей</p>';
+    : `<p class="list-empty">${escapeHtml(tr('list.empty'))}</p>`;
 }
 
 function renderSourceNote(section, source) {
   document.querySelectorAll(`[data-source-for="${section}"]`).forEach((el) => {
     el.dataset.source = source;
-    el.textContent = source === 'remote' ? 'Данные: Google Таблица' : 'Данные: локальный резерв';
+    el.textContent = tr(source === 'remote' ? 'source.remote' : 'source.local');
   });
 }
+
+let activeProgramFilter = FILTER_ALL;
 
 function setupProgramFilters(container, items) {
   const bar = document.querySelector('[data-filters="programs"]');
   if (!bar) return renderList(container, items, 'programs');
 
-  const types = ['Все', ...PROGRAM_TYPES];
+  const types = [FILTER_ALL, ...PROGRAM_TYPES];
   bar.innerHTML = types
-    .map((t, i) => `<button type="button" class="chip" data-type="${escapeHtml(t)}" aria-pressed="${i === 0}">${escapeHtml(t)}</button>`)
+    .map((type) => {
+      const label = type === FILTER_ALL ? tr('filter.all') : typeLabel(type);
+      return `<button type="button" class="chip" data-type="${escapeHtml(type)}" aria-pressed="false">${escapeHtml(label)}</button>`;
+    })
     .join('');
 
   const apply = (type) => {
+    activeProgramFilter = type;
     bar.querySelectorAll('.chip').forEach((c) => c.setAttribute('aria-pressed', String(c.dataset.type === type)));
-    renderList(container, type === 'Все' ? items : items.filter((p) => p.type === type), 'programs');
+    renderList(container, type === FILTER_ALL ? items : items.filter((p) => p.type === type), 'programs');
   };
-  bar.addEventListener('click', (ev) => {
+  // onclick, а не addEventListener: панель перестраивается при смене языка, обработчик не должен дублироваться.
+  bar.onclick = (ev) => {
     const chip = ev.target.closest('.chip');
     if (chip) apply(chip.dataset.type);
-  });
-  apply('Все');
+  };
+  apply(activeProgramFilter);
 }
 
 async function populate(container) {
@@ -306,7 +324,7 @@ function buildField(field) {
 
   const label = document.createElement('label');
   label.htmlFor = id;
-  label.textContent = field.label;
+  label.textContent = tr(field.label);
   if (field.required) {
     const req = document.createElement('span');
     req.className = 'req';
@@ -319,8 +337,8 @@ function buildField(field) {
     input = document.createElement('textarea');
   } else if (field.type === 'select') {
     input = document.createElement('select');
-    input.append(new Option('— выберите —', ''));
-    field.options.forEach((opt) => input.append(new Option(opt, opt)));
+    input.append(new Option(tr('form.choose'), ''));
+    field.options.forEach((opt) => input.append(new Option(typeLabel(opt), opt)));
   } else {
     input = document.createElement('input');
     input.type = field.type || 'text';
@@ -337,7 +355,7 @@ function buildField(field) {
     const hint = document.createElement('span');
     hint.className = 'field-hint';
     hint.id = `${id}-hint`;
-    hint.textContent = field.hint;
+    hint.textContent = tr(field.hint);
     input.setAttribute('aria-describedby', hint.id);
     wrap.append(hint);
   }
@@ -351,16 +369,16 @@ function createDialog() {
   dialog.innerHTML = `
     <div class="dialog-head">
       <h2 id="add-dialog-title"></h2>
-      <button type="button" class="dialog-close" aria-label="Закрыть">×</button>
+      <button type="button" class="dialog-close" data-i18n-attr="aria-label:form.close">×</button>
     </div>
     <form class="add-form" novalidate>
       <div class="fields"></div>
-      <div class="hp" aria-hidden="true"><label>Не заполняйте <input name="website" tabindex="-1" autocomplete="off"></label></div>
-      <p class="form-note">Запись появится на сайте после проверки администратором.</p>
+      <div class="hp" aria-hidden="true"><label><span data-i18n="form.honeypot"></span> <input name="website" tabindex="-1" autocomplete="off"></label></div>
+      <p class="form-note" data-i18n="form.note"></p>
       <p class="form-status" role="status" aria-live="polite"></p>
       <div class="form-actions">
-        <button type="button" class="btn btn-ghost" data-cancel>Отмена</button>
-        <button type="submit" class="btn">Отправить</button>
+        <button type="button" class="btn btn-ghost" data-cancel data-i18n="form.cancel"></button>
+        <button type="submit" class="btn" data-i18n="form.submit"></button>
       </div>
     </form>`;
   document.body.append(dialog);
@@ -374,22 +392,35 @@ function createDialog() {
   return dialog;
 }
 
-function openDialog(section) {
+// Заполняет тексты и поля формы на текущем языке, сохраняя уже введённые значения.
+function fillDialog(dialog, section) {
   const schema = SECTIONS[section];
-  if (!schema) return;
-
-  const dialog = document.querySelector('dialog.add-dialog') || createDialog();
   const form = dialog.querySelector('form');
+  const values = form.querySelector('.fields').children.length ? collectData(form, schema) : {};
+
   dialog.dataset.section = section;
-  dialog.querySelector('#add-dialog-title').textContent = schema.title;
+  dialog.querySelector('#add-dialog-title').textContent = tr(schema.title);
+  window.NV_LANG.apply(dialog);
 
   const fields = form.querySelector('.fields');
   fields.replaceChildren(...schema.fields.map(buildField));
+  Object.entries(values).forEach(([name, value]) => {
+    if (form.elements[name]) form.elements[name].value = value;
+  });
+}
+
+function openDialog(section) {
+  if (!SECTIONS[section]) return;
+
+  const dialog = document.querySelector('dialog.add-dialog') || createDialog();
+  const form = dialog.querySelector('form');
+  form.querySelector('.fields').replaceChildren();
+  fillDialog(dialog, section);
 
   form.reset();
   setStatus(form, '');
   dialog.showModal();
-  fields.querySelector('input, textarea, select')?.focus();
+  form.querySelector('.fields input, .fields textarea, .fields select')?.focus();
 }
 
 function setStatus(form, text, kind) {
@@ -407,9 +438,10 @@ function collectData(form, schema) {
 function validate(data, schema) {
   for (const f of schema.fields) {
     const value = data[f.name];
-    if (f.required && !value) return `Заполните поле «${f.label}».`;
-    if (value && f.type === 'url' && !safeUrl(value)) return `Поле «${f.label}»: укажите ссылку, начинающуюся с https://`;
-    if (value && f.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) return 'Проверьте адрес e-mail.';
+    const label = tr(f.label);
+    if (f.required && !value) return tr('err.required', { label });
+    if (value && f.type === 'url' && !safeUrl(value)) return tr('err.url', { label });
+    if (value && f.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) return tr('err.email');
   }
   return '';
 }
@@ -426,22 +458,23 @@ async function handleSubmit(ev, dialog) {
 
   const submitBtn = form.querySelector('[type="submit"]');
   submitBtn.disabled = true;
-  setStatus(form, 'Отправляем…');
+  setStatus(form, tr('form.sending'));
   try {
     const result = await submitEntry(section, data, form.elements.website.value);
     const published = result.status === 'published';
-    setStatus(form, published ? 'Готово — запись опубликована.' : 'Спасибо! Запись отправлена на модерацию.', 'ok');
+    setStatus(form, tr(published ? 'form.published' : 'form.moderation'), 'ok');
     form.reset();
     if (published) refreshSection(section);
   } catch (err) {
-    const message = err.name === 'AbortError' ? 'Сервер не ответил вовремя. Попробуйте ещё раз.' : err.message;
-    setStatus(form, message, 'error');
+    setStatus(form, err.name === 'AbortError' ? tr('form.timeout') : err.message, 'error');
   } finally {
     submitBtn.disabled = false;
   }
 }
 
-/* ---------- Навигация ---------- */
+/* ---------- Навигация (на мобильных — выпадающее меню на весь экран) ---------- */
+
+const DESKTOP_NAV_QUERY = window.matchMedia('(min-width: 1121px)');
 
 function setupNav() {
   const page = document.body.dataset.page;
@@ -452,10 +485,34 @@ function setupNav() {
   const toggle = document.querySelector('.nav-toggle');
   const nav = document.getElementById('site-nav');
   if (!toggle || !nav) return;
-  toggle.addEventListener('click', () => {
-    const open = nav.classList.toggle('is-open');
+
+  const setOpen = (open) => {
+    nav.classList.toggle('is-open', open);
     toggle.setAttribute('aria-expanded', String(open));
+    document.documentElement.classList.toggle('nav-open', open);
+  };
+
+  toggle.addEventListener('click', () => setOpen(!nav.classList.contains('is-open')));
+  nav.addEventListener('click', (ev) => {
+    if (ev.target.closest('a')) setOpen(false);
   });
+  document.addEventListener('keydown', (ev) => {
+    if (ev.key === 'Escape' && nav.classList.contains('is-open')) {
+      setOpen(false);
+      toggle.focus();
+    }
+  });
+  DESKTOP_NAV_QUERY.addEventListener('change', (ev) => {
+    if (ev.matches) setOpen(false);
+  });
+}
+
+/* ---------- Смена языка ---------- */
+
+function onLangChange() {
+  document.querySelectorAll('[data-list]').forEach(populate);
+  const dialog = document.querySelector('dialog.add-dialog');
+  if (dialog?.open) fillDialog(dialog, dialog.dataset.section);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -463,4 +520,5 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('[data-year]').forEach((el) => { el.textContent = new Date().getFullYear(); });
   document.querySelectorAll('[data-add]').forEach((btn) => btn.addEventListener('click', () => openDialog(btn.dataset.add)));
   document.querySelectorAll('[data-list]').forEach(populate);
+  document.addEventListener('nv:langchange', onLangChange);
 });

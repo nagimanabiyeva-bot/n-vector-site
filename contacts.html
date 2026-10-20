@@ -13,23 +13,31 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body data-page="contacts">
-  <a class="skip-link" href="#main">Перейти к содержанию</a>
+  <a class="skip-link" href="#main" data-i18n="skip">Перейти к содержанию</a>
 
   <header class="site-header">
     <div class="wrap header-inner">
-      <a class="brand" href="index.html" aria-label="N-VECTOR Consulting Services — на главную">
+      <a class="brand" href="index.html" aria-label="N-VECTOR Consulting Services — на главную" data-i18n-attr="aria-label:brand.home">
         <img src="img/logo-mark-dark.svg" alt="" width="30" height="36">
         <span class="brand-text"><span class="brand-name">N-VECTOR</span><span class="brand-sub">Consulting Services</span></span>
       </a>
-      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Меню</button>
-      <nav id="site-nav" class="site-nav" aria-label="Основная навигация">
-        <a href="index.html" data-nav="home">О компании</a>
-        <a href="team.html" data-nav="team">Команда</a>
-        <a href="projects.html" data-nav="projects">Проекты</a>
-        <a href="events.html" data-nav="events">Мероприятия</a>
-        <a href="programs.html" data-nav="programs">Программы поддержки</a>
-        <a href="contacts.html" data-nav="contacts">Контакты</a>
+      <nav id="site-nav" class="site-nav" aria-label="Основная навигация" data-i18n-attr="aria-label:nav.label">
+        <a href="index.html" data-nav="home" data-i18n="nav.home">О компании</a>
+        <a href="team.html" data-nav="team" data-i18n="nav.team">Команда</a>
+        <a href="projects.html" data-nav="projects" data-i18n="nav.projects">Проекты</a>
+        <a href="events.html" data-nav="events" data-i18n="nav.events">Мероприятия</a>
+        <a href="programs.html" data-nav="programs" data-i18n="nav.programs">Программы поддержки</a>
+        <a href="contacts.html" data-nav="contacts" data-i18n="nav.contacts">Контакты</a>
       </nav>
+      <div class="lang-switch" role="group" aria-label="Язык сайта" data-i18n-attr="aria-label:lang.label">
+        <button type="button" data-lang="en" lang="en" aria-pressed="false">EN</button>
+        <button type="button" data-lang="ru" lang="ru" aria-pressed="true">RU</button>
+        <button type="button" data-lang="kz" lang="kk" aria-pressed="false">KZ</button>
+      </div>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span class="burger" aria-hidden="true"><span></span><span></span><span></span></span>
+        <span class="nav-toggle-label" data-i18n="nav.menu">Меню</span>
+      </button>
     </div>
   </header>
 
@@ -37,29 +45,29 @@
     <section class="page-head">
       <img class="page-deco scene-piece" src="img/scene/server.jpg" alt="" aria-hidden="true">
       <div class="wrap">
-        <p class="eyebrow">Контакты</p>
-        <h1>Свяжитесь с нами</h1>
-        <p class="lede">Обсудим разработку электронной системы, автоматизацию агропроцессов, патентование или подготовку заявки на грант.</p>
+        <p class="eyebrow" data-i18n="contacts.eyebrow">Контакты</p>
+        <h1 data-i18n="contacts.title">Свяжитесь с нами</h1>
+        <p class="lede" data-i18n="contacts.lede">Обсудим разработку электронной системы, автоматизацию агропроцессов, патентование или подготовку заявки на грант.</p>
       </div>
     </section>
 
     <section class="wrap" style="padding-top:clamp(1.5rem,3vw,2.5rem)">
       <div class="contact-grid">
         <div class="panel">
-          <h2>Компания</h2>
-          <!-- TODO: впишите реальные e-mail, телефон и адрес вместо пометок «укажите». -->
+          <h2 data-i18n="contacts.company">Компания</h2>
+          <!-- TODO: впишите реальные e-mail, телефон и адрес вместо пометок «укажите» (в HTML и в словарях data/i18n). -->
           <dl class="kv">
-            <dt>Название</dt><dd>ТОО «N-VECTOR Consulting Services»</dd>
-            <dt>Сайт</dt><dd><a href="https://n-vector.net" target="_blank" rel="noopener">n-vector.net</a></dd>
-            <dt>E-mail</dt><dd><span class="todo">укажите e-mail компании</span></dd>
-            <dt>Телефон</dt><dd><span class="todo">укажите телефон</span></dd>
-            <dt>Адрес</dt><dd><span class="todo">укажите город и адрес</span></dd>
+            <dt data-i18n="contacts.name">Название</dt><dd data-i18n="company">ТОО «N-VECTOR Consulting Services»</dd>
+            <dt data-i18n="contacts.site">Сайт</dt><dd><a href="https://n-vector.net" target="_blank" rel="noopener">n-vector.net</a></dd>
+            <dt data-i18n="contacts.email">E-mail</dt><dd><span class="todo" data-i18n="contacts.todoEmail">укажите e-mail компании</span></dd>
+            <dt data-i18n="contacts.phone">Телефон</dt><dd><span class="todo" data-i18n="contacts.todoPhone">укажите телефон</span></dd>
+            <dt data-i18n="contacts.address">Адрес</dt><dd><span class="todo" data-i18n="contacts.todoAddress">укажите город и адрес</span></dd>
           </dl>
         </div>
         <div class="panel">
-          <h2>Команда</h2>
+          <h2 data-i18n="contacts.team">Команда</h2>
           <ul class="people" data-list="team" data-variant="contacts" aria-live="polite">
-            <li><p class="loading">Загрузка…</p></li>
+            <li><p class="loading" data-i18n="loading">Загрузка…</p></li>
           </ul>
         </div>
       </div>
@@ -69,10 +77,14 @@
   <footer class="site-footer">
     <div class="wrap footer-inner">
       <span class="footer-brand"><img src="img/logo-mark-dark.svg" alt="" width="22" height="27">N-VECTOR Consulting Services</span>
-      <span>© <span data-year></span> ТОО «N-VECTOR Consulting Services»</span>
+      <span>© <span data-year></span> <span data-i18n="company">ТОО «N-VECTOR Consulting Services»</span></span>
     </div>
   </footer>
 
+  <script src="data/i18n/ru.js"></script>
+  <script src="data/i18n/en.js"></script>
+  <script src="data/i18n/kz.js"></script>
+  <script src="js/i18n.js"></script>
   <script src="data/fallback.js"></script>
   <script src="js/main.js"></script>
   <script src="js/motion.js"></script>
