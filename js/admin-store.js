@@ -9,6 +9,8 @@
 */
 const AdminStore = (() => {
   const SESSION_KEY = 'nv-admin-session';
+  // Сообщения — на языке интерфейса (словари data/i18n/admin-*.js).
+  const msg = (key) => (window.NV_LANG ? window.NV_LANG.t(key) : key);
   let mode = null;
   let adminKey = '';
   let demoData = null;
@@ -47,10 +49,10 @@ const AdminStore = (() => {
         body: JSON.stringify({ action, key: adminKey, ...payload }),
       });
     } catch (err) {
-      throw new Error(err.name === 'AbortError' ? 'Сервер не ответил вовремя. Попробуйте ещё раз.' : 'Нет связи с Google Таблицей. Проверьте интернет и API_URL.');
+      throw new Error(msg(err.name === 'AbortError' ? 'admin.errTimeout' : 'admin.errNetwork'));
     }
     if (!json.ok) {
-      const error = new Error(json.error || 'Не удалось выполнить действие.');
+      const error = new Error(json.error || msg('admin.errGeneric'));
       error.code = json.code;
       throw error;
     }
@@ -72,13 +74,13 @@ const AdminStore = (() => {
     try {
       localStorage.setItem(DEMO_STORAGE_KEY, JSON.stringify(demoData));
     } catch {
-      throw new Error('Браузер не даёт сохранить данные (приватный режим?). Правки пропадут после перезагрузки.');
+      throw new Error(msg('admin.errStorage'));
     }
   }
 
   const findDemo = (section, id) => {
     const index = demoData[section].findIndex((item) => item.id === id);
-    if (index === -1) throw new Error('Запись не найдена — возможно, её уже удалили.');
+    if (index === -1) throw new Error(msg('admin.errNotFound'));
     return index;
   };
 

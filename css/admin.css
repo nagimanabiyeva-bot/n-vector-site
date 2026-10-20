@@ -42,7 +42,16 @@ code {
 
 /* ---------- Вход ---------- */
 
-.admin-login { padding-block: clamp(2.5rem, 6vw, 5rem); display: grid; place-items: center; }
+/* Экран входа — как первый экран сайта: фото на всю ширину со светлой подложкой */
+.admin-login-band { position: relative; overflow: hidden; background: var(--sand-soft); }
+.admin-login-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.admin-login-band::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(247, 245, 242, 0.96) 0%, rgba(247, 245, 242, 0.82) 55%, rgba(247, 245, 242, 0.55) 100%);
+}
+.admin-login { position: relative; z-index: 1; padding-block: clamp(2.5rem, 6vw, 5rem); display: grid; place-items: center; }
 .admin-login-card { width: min(100%, 560px); display: grid; gap: 0.5rem; }
 .admin-login-card h1 { font-size: clamp(1.8rem, 1.4rem + 1.6vw, 2.6rem); }
 .admin-login-form { padding: 1rem 0 0; }
@@ -236,8 +245,14 @@ dialog.admin-editor { width: min(720px, calc(100vw - 2rem)); }
 
 /* ---------- Мобильная версия админки ---------- */
 
+.admin .brand-name, .admin .brand-sub { white-space: nowrap; }
+
 @media (max-width: 760px) {
-  .admin-header-actions .btn { padding: 0.45rem 0.7rem; }
+  /* На телефоне ссылка на сайт — в верхней полосе, в шапке остаётся только «Выйти» */
+  .admin .topbar-item { display: none; }
+  .admin .topbar-item--focus { display: inline-flex; padding-left: 0; border-left: none; }
+  .admin #open-site { display: none; }
+  .admin-header-actions .btn { padding: 0.45rem 0.8rem; }
   .mode-badge { display: none; }
   .admin-tabs { flex-wrap: nowrap; overflow-x: auto; margin-inline: calc(var(--gutter) * -1); padding: 0 var(--gutter) 0.3rem; scrollbar-width: none; }
   .admin-tab { flex: none; }

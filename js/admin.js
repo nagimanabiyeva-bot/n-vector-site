@@ -3,8 +3,13 @@
 /*
   Админ-панель: добавление, редактирование, публикация и удаление записей кнопками.
   Данные — через AdminStore (js/admin-store.js): Google Таблица по ключу или демо-режим в браузере.
+  Интерфейс — на трёх языках (EN / RU / KZ), как и сайт: тексты в data/i18n/admin-*.js.
 */
 
+// Переводы — из js/i18n.js (подключается раньше этого файла).
+const tr = (key, vars) => window.NV_LANG.t(key, vars);
+
+// Языки содержимого записи (вкладки в редакторе) — не путать с языком интерфейса.
 const EDITOR_LANGS = Object.freeze([
   { code: 'ru', label: 'RU', suffix: '' },
   { code: 'en', label: 'EN', suffix: '_en' },
@@ -13,54 +18,48 @@ const EDITOR_LANGS = Object.freeze([
 const ARM_TIMEOUT_MS = 4000;
 const TOAST_TIMEOUT_MS = 4000;
 
-// i18n: true — поле заполняется на трёх языках (name, name_en, name_kz).
+// label / hint — ключи словаря. i18n: true — поле заполняется на трёх языках (name, name_en, name_kz).
 const ADMIN_SECTIONS = Object.freeze({
   team: {
-    label: 'Команда',
-    newTitle: 'Новый участник команды',
     titleField: 'name',
     subField: 'role',
     fields: [
-      { name: 'name', label: 'Имя и фамилия', required: true, i18n: true, max: 120 },
-      { name: 'role', label: 'Роль в компании', required: true, i18n: true, max: 120 },
-      { name: 'bio', label: 'Коротко о себе', type: 'textarea', i18n: true, max: 600 },
-      { name: 'tags', label: 'Компетенции', hint: 'Через запятую: Встраиваемые системы, IoT', i18n: true, max: 200 },
-      { name: 'photo', label: 'Фото', type: 'image', hint: 'Ссылка https://… или путь к файлу сайта, например img/team/имя.jpg. Без фото — инициалы.', max: 400 },
-      { name: 'email', label: 'E-mail', type: 'email', max: 160 },
+      { name: 'name', label: 'admin.f.fullName', required: true, i18n: true, max: 120 },
+      { name: 'role', label: 'admin.f.role', required: true, i18n: true, max: 120 },
+      { name: 'bio', label: 'admin.f.bio', type: 'textarea', i18n: true, max: 600 },
+      { name: 'tags', label: 'admin.f.tags', hint: 'admin.f.tagsHint', i18n: true, max: 200 },
+      { name: 'photo', label: 'admin.f.photo', type: 'image', hint: 'admin.f.photoHint', max: 400 },
+      { name: 'email', label: 'admin.f.email', type: 'email', max: 160 },
     ],
   },
   projects: {
-    label: 'Проекты',
-    newTitle: 'Новый проект',
     titleField: 'name',
     subField: 'tag',
     fields: [
-      { name: 'name', label: 'Название проекта', required: true, i18n: true, max: 160 },
-      { name: 'tag', label: 'Метка (например, «Патент №…», «IoT»)', i18n: true, max: 60 },
-      { name: 'description', label: 'Описание', type: 'textarea', required: true, i18n: true, max: 1200 },
-      { name: 'year', label: 'Год', type: 'year' },
-      { name: 'link', label: 'Ссылка', type: 'url', max: 400 },
+      { name: 'name', label: 'admin.f.projectName', required: true, i18n: true, max: 160 },
+      { name: 'tag', label: 'admin.f.tag', i18n: true, max: 60 },
+      { name: 'description', label: 'admin.f.description', type: 'textarea', required: true, i18n: true, max: 1200 },
+      { name: 'year', label: 'admin.f.year', type: 'year' },
+      { name: 'link', label: 'admin.f.link', type: 'url', max: 400 },
     ],
   },
   events: {
-    label: 'Мероприятия',
-    newTitle: 'Новое мероприятие',
     titleField: 'title',
     subField: 'date',
     fields: [
-      { name: 'title', label: 'Название мероприятия', required: true, i18n: true, max: 160 },
-      { name: 'location', label: 'Место проведения', i18n: true, max: 160 },
-      { name: 'description', label: 'Что делала компания', type: 'textarea', i18n: true, max: 1200 },
-      { name: 'date', label: 'Дата', type: 'date', required: true },
-      { name: 'link', label: 'Ссылка', type: 'url', max: 400 },
+      { name: 'title', label: 'admin.f.eventTitle', required: true, i18n: true, max: 160 },
+      { name: 'location', label: 'admin.f.location', i18n: true, max: 160 },
+      { name: 'description', label: 'admin.f.eventDesc', type: 'textarea', i18n: true, max: 1200 },
+      { name: 'date', label: 'admin.f.date', type: 'date', required: true },
+      { name: 'link', label: 'admin.f.link', type: 'url', max: 400 },
     ],
   },
 });
 
 const STATUS_FILTERS = Object.freeze([
-  { value: 'all', label: 'Все' },
-  { value: 'published', label: 'Опубликованные' },
-  { value: 'pending', label: 'Черновики' },
+  { value: 'all', label: 'admin.filterAll' },
+  { value: 'published', label: 'admin.filterPublished' },
+  { value: 'pending', label: 'admin.filterDrafts' },
 ]);
 
 const state = {
@@ -85,11 +84,11 @@ function toast(message, kind = 'ok') {
 }
 
 // Кнопка опасного действия срабатывает со второго нажатия (первое — «вы уверены?»).
-function isArmed(button, armedText) {
+function isArmed(button, armedKey) {
   if (button.dataset.armed === 'true') return true;
   const original = button.textContent;
   button.dataset.armed = 'true';
-  button.textContent = armedText;
+  button.textContent = tr(armedKey);
   setTimeout(() => {
     if (!button.isConnected) return;
     button.dataset.armed = 'false';
@@ -118,10 +117,19 @@ function showScreen(name) {
   $('#header-actions').hidden = name !== 'workspace';
 }
 
-function setLoginStatus(text, kind) {
+// Статус входа хранит ключ словаря, чтобы перевестись при смене языка.
+function setLoginStatus(key, kind) {
   const el = $('#login-status');
-  el.textContent = text;
+  el.dataset.key = key || '';
+  el.textContent = key ? tr(key) : '';
   el.className = `form-status${kind ? ` is-${kind}` : ''}`;
+}
+
+function setLoginError(message) {
+  const el = $('#login-status');
+  el.dataset.key = '';
+  el.textContent = message;
+  el.className = 'form-status is-error';
 }
 
 function setupLogin() {
@@ -132,17 +140,17 @@ function setupLogin() {
   $('#login-form').addEventListener('submit', async (ev) => {
     ev.preventDefault();
     const key = $('#admin-key').value;
-    if (!key.trim()) return setLoginStatus('Введите ключ администратора.', 'error');
+    if (!key.trim()) return setLoginStatus('admin.enterKey', 'error');
     const button = $('#login-form [type="submit"]');
     button.disabled = true;
-    setLoginStatus('Проверяем ключ…');
+    setLoginStatus('admin.checking');
     try {
       await AdminStore.login(key);
       $('#admin-key').value = '';
       setLoginStatus('');
       await enterWorkspace();
     } catch (err) {
-      setLoginStatus(err.message, 'error');
+      setLoginError(err.message);
     } finally {
       button.disabled = false;
     }
@@ -157,16 +165,21 @@ function setupLogin() {
 function handleAuthLost() {
   AdminStore.logout();
   showScreen('login');
-  setLoginStatus('Ключ больше не действует. Войдите заново.', 'error');
+  setLoginStatus('admin.authLost', 'error');
+}
+
+function renderModeBadge() {
+  const isDemo = AdminStore.mode === 'demo';
+  $('#mode-badge').textContent = tr(isDemo ? 'admin.modeDemo' : 'admin.modeRemote');
+  $('#mode-badge').dataset.mode = AdminStore.mode || '';
 }
 
 async function enterWorkspace() {
   const isDemo = AdminStore.mode === 'demo';
   $('#mode-banner').hidden = !isDemo;
   $('#reset-demo').hidden = !isDemo;
-  $('#mode-badge').textContent = isDemo ? 'Демо-режим' : 'Google Таблица';
-  $('#mode-badge').dataset.mode = AdminStore.mode;
   $('#open-site').href = isDemo ? 'index.html?preview=1' : 'index.html';
+  renderModeBadge();
   showScreen('workspace');
   await reloadAll();
 }
@@ -174,7 +187,7 @@ async function enterWorkspace() {
 /* ---------- Данные ---------- */
 
 async function reloadAll() {
-  $('#admin-list').innerHTML = '<p class="loading">Загрузка…</p>';
+  $('#admin-list').innerHTML = `<p class="loading">${escapeHtml(tr('loading'))}</p>`;
   try {
     const lists = await Promise.all(SECTION_NAMES.map((name) => AdminStore.list(name)));
     state.data = Object.fromEntries(SECTION_NAMES.map((name, i) => [name, lists[i]]));
@@ -200,9 +213,16 @@ function isTranslated(section, item, suffix) {
   return i18nFields(section).every((f) => !item[f.name] || String(item[`${f.name}${suffix}`] || '').trim());
 }
 
+// Название записи — на языке интерфейса, если перевод заполнен.
+const displayValue = (item, field) => {
+  const lang = window.NV_LANG.lang;
+  const suffix = EDITOR_LANGS.find((l) => l.code === lang)?.suffix || '';
+  return String((suffix && item[`${field}${suffix}`]) || item[field] || '');
+};
+
 function itemSubtitle(section, item) {
-  const value = item[ADMIN_SECTIONS[section].subField] || '';
-  return ADMIN_SECTIONS[section].subField === 'date' || ADMIN_SECTIONS[section].subField === 'deadline' ? formatDate(value) : value;
+  const field = ADMIN_SECTIONS[section].subField;
+  return field === 'date' ? formatDate(item[field]) : displayValue(item, field);
 }
 
 function thumbHtml(section, item) {
@@ -213,11 +233,11 @@ function thumbHtml(section, item) {
 
 function itemHtml(section, item) {
   const published = isPublished(item);
-  const title = item[ADMIN_SECTIONS[section].titleField] || '(без названия)';
+  const title = displayValue(item, ADMIN_SECTIONS[section].titleField) || tr('admin.untitled');
   const langBadges = EDITOR_LANGS.slice(1)
     .map(({ label, suffix }) => {
       const done = isTranslated(section, item, suffix);
-      return `<span class="badge badge-lang${done ? ' is-done' : ''}" title="${done ? 'Перевод заполнен' : 'Нет перевода — покажется русский текст'}">${label} ${done ? '✓' : '—'}</span>`;
+      return `<span class="badge badge-lang${done ? ' is-done' : ''}" title="${escapeHtml(tr(done ? 'admin.langDone' : 'admin.langMissing'))}">${label} ${done ? '✓' : '—'}</span>`;
     })
     .join('');
   return `
@@ -227,14 +247,14 @@ function itemHtml(section, item) {
         <div class="admin-item-title">${escapeHtml(title)}</div>
         <div class="admin-item-sub">${escapeHtml(itemSubtitle(section, item))}</div>
         <div class="admin-badges">
-          <span class="badge ${published ? 'badge-ok' : 'badge-draft'}">${published ? '● Опубликовано' : '○ Черновик'}</span>
+          <span class="badge ${published ? 'badge-ok' : 'badge-draft'}">${escapeHtml(tr(published ? 'admin.statusPublished' : 'admin.statusDraft'))}</span>
           ${langBadges}
         </div>
       </div>
       <div class="admin-item-actions">
-        <button type="button" class="btn btn-ghost btn-sm" data-act="edit">✎ Изменить</button>
-        <button type="button" class="btn btn-ghost btn-sm" data-act="toggle">${published ? 'Скрыть с сайта' : 'Опубликовать'}</button>
-        <button type="button" class="btn btn-danger btn-sm" data-act="delete">Удалить</button>
+        <button type="button" class="btn btn-ghost btn-sm" data-act="edit">${escapeHtml(tr('admin.edit'))}</button>
+        <button type="button" class="btn btn-ghost btn-sm" data-act="toggle">${escapeHtml(tr(published ? 'admin.hide' : 'admin.publish'))}</button>
+        <button type="button" class="btn btn-danger btn-sm" data-act="delete">${escapeHtml(tr('admin.delete'))}</button>
       </div>
     </article>`;
 }
@@ -253,23 +273,23 @@ function renderTabs() {
     const items = state.data[name];
     const drafts = items.filter((item) => !isPublished(item)).length;
     return `<button type="button" class="admin-tab" data-section="${name}" aria-pressed="${name === state.section}">
-      ${escapeHtml(ADMIN_SECTIONS[name].label)} <span class="admin-tab-count">${items.length}</span>${drafts ? `<span class="admin-tab-drafts" title="Черновики">${drafts}</span>` : ''}
+      ${escapeHtml(tr(`admin.sec.${name}`))} <span class="admin-tab-count">${items.length}</span>${drafts ? `<span class="admin-tab-drafts" title="${escapeHtml(tr('admin.drafts'))}">${drafts}</span>` : ''}
     </button>`;
   }).join('');
 }
 
 function renderFilters() {
   $('#status-filters').innerHTML = STATUS_FILTERS.map(
-    (f) => `<button type="button" class="chip" data-status="${f.value}" aria-pressed="${f.value === state.statusFilter}">${f.label}</button>`,
+    (f) => `<button type="button" class="chip" data-status="${f.value}" aria-pressed="${f.value === state.statusFilter}">${escapeHtml(tr(f.label))}</button>`,
   ).join('');
 }
 
 function renderList() {
   const items = visibleItems();
-  $('#section-title').textContent = ADMIN_SECTIONS[state.section].label;
+  $('#section-title').textContent = tr(`admin.sec.${state.section}`);
   $('#admin-list').innerHTML = items.length
     ? items.map((item) => itemHtml(state.section, item)).join('')
-    : `<p class="list-empty">${state.data[state.section].length ? 'Ничего не найдено по фильтру.' : 'В разделе пока нет записей — нажмите «+ Добавить».'}</p>`;
+    : `<p class="list-empty">${escapeHtml(tr(state.data[state.section].length ? 'admin.emptyFilter' : 'admin.emptySection'))}</p>`;
 }
 
 function renderAll() {
@@ -286,17 +306,17 @@ async function togglePublished(button, item) {
     const record = await AdminStore.update(state.section, item.id, { status });
     replaceItem(state.section, record);
     renderAll();
-    toast(status === 'published' ? 'Запись опубликована на сайте.' : 'Запись скрыта с сайта.');
+    toast(tr(status === 'published' ? 'admin.toastPublished' : 'admin.toastHidden'));
   });
 }
 
 async function deleteItem(button, item) {
-  if (!isArmed(button, 'Точно удалить?')) return;
+  if (!isArmed(button, 'admin.confirmDelete')) return;
   await withBusy(button, async () => {
     await AdminStore.remove(state.section, item.id);
     state.data[state.section] = state.data[state.section].filter((x) => x.id !== item.id);
     renderAll();
-    toast('Запись удалена.');
+    toast(tr('admin.toastDeleted'));
   });
 }
 
@@ -332,15 +352,15 @@ function setupList() {
   $('#reload').addEventListener('click', (ev) => withBusy(ev.currentTarget, reloadAll));
   $('#export').addEventListener('click', (ev) => withBusy(ev.currentTarget, exportFallback));
   $('#reset-demo').addEventListener('click', (ev) => {
-    if (!isArmed(ev.currentTarget, 'Точно сбросить все правки?')) return;
+    if (!isArmed(ev.currentTarget, 'admin.confirmReset')) return;
     AdminStore.resetDemo();
     reloadAll();
-    toast('Демо-данные сброшены к исходным.');
+    toast(tr('admin.toastReset'));
   });
   $('#logout').addEventListener('click', () => {
     AdminStore.logout();
     showScreen('login');
-    setLoginStatus('Вы вышли из админ-панели.');
+    setLoginStatus('admin.loggedOut');
   });
 }
 
@@ -354,7 +374,7 @@ async function exportFallback() {
   link.click();
   link.remove();
   setTimeout(() => URL.revokeObjectURL(url), 1000);
-  toast('Файл fallback.js скачан. Замените им data/fallback.js на сайте.');
+  toast(tr('admin.toastExported'));
 }
 
 /* ---------- Редактор записи ---------- */
@@ -362,7 +382,7 @@ async function exportFallback() {
 function fieldControl(field, name, value, required) {
   const id = `ed-${name}`;
   const req = required ? ' <span class="req">*</span>' : '';
-  const hint = field.hint ? `<span class="field-hint" id="${id}-hint">${escapeHtml(field.hint)}</span>` : '';
+  const hint = field.hint ? `<span class="field-hint" id="${id}-hint">${escapeHtml(tr(field.hint))}</span>` : '';
   const describedBy = field.hint ? ` aria-describedby="${id}-hint"` : '';
   const common = `id="${id}" name="${name}"${required ? ' required' : ''}${field.max ? ` maxlength="${field.max}"` : ''}${describedBy}`;
   const safeValue = escapeHtml(value);
@@ -371,44 +391,47 @@ function fieldControl(field, name, value, required) {
   if (field.type === 'textarea') control = `<textarea ${common}>${safeValue}</textarea>`;
   else if (field.type === 'select') {
     const options = field.options.map((opt) => `<option value="${escapeHtml(opt)}"${opt === value ? ' selected' : ''}>${escapeHtml(opt)}</option>`).join('');
-    control = `<select ${common}><option value="">— выберите —</option>${options}</select>`;
+    control = `<select ${common}><option value="">${escapeHtml(tr('admin.choose'))}</option>${options}</select>`;
   } else {
     const type = { url: 'url', email: 'email', date: 'date', year: 'number' }[field.type] || 'text';
     const extra = field.type === 'year' ? ' min="1990" max="2100" step="1"' : '';
     control = `<input type="${type}" ${common}${extra} value="${safeValue}">`;
   }
-  return `<div class="field"><label for="${id}">${escapeHtml(field.label)}${req}</label>${control}${hint}</div>`;
+  return `<div class="field"><label for="${id}">${escapeHtml(tr(field.label))}${req}</label>${control}${hint}</div>`;
 }
 
-function langPanelHtml(section, item, lang) {
+function langPanelHtml(section, values, lang, activeLang) {
   const fields = i18nFields(section)
-    .map((f) => fieldControl(f, `${f.name}${lang.suffix}`, item ? item[`${f.name}${lang.suffix}`] || '' : '', f.required && lang.code === 'ru'))
+    .map((f) => fieldControl(f, `${f.name}${lang.suffix}`, values[`${f.name}${lang.suffix}`] || '', f.required && lang.code === 'ru'))
     .join('');
-  const note = lang.code === 'ru'
-    ? 'Основной текст. Показывается на русской версии и там, где нет перевода.'
-    : `Перевод для версии ${lang.label}. Пустое поле — на сайте покажется русский текст.`;
-  return `<div class="editor-panel" data-panel="${lang.code}"${lang.code === 'ru' ? '' : ' hidden'}>
-    <p class="form-note">${note}</p>${fields}</div>`;
+  const note = lang.code === 'ru' ? tr('admin.noteRu') : tr('admin.noteLang', { lang: lang.label });
+  return `<div class="editor-panel" data-panel="${lang.code}"${lang.code === activeLang ? '' : ' hidden'}>
+    <p class="form-note">${escapeHtml(note)}</p>${fields}</div>`;
+}
+
+// Отрисовать форму по значениям записи (при смене языка интерфейса — с уже введёнными данными).
+function renderEditor(values, published, activeLang = 'ru') {
+  const section = state.section;
+  const config = ADMIN_SECTIONS[section];
+  $('#editor-title').textContent = state.editingId
+    ? tr('admin.editTitle', { name: displayValue(values, config.titleField) })
+    : tr(`admin.new.${section}`);
+  $('#editor-published').checked = published;
+  $('#editor-langs').innerHTML = EDITOR_LANGS.map(
+    (lang) => `<button type="button" class="chip" data-lang-tab="${lang.code}" aria-pressed="${lang.code === activeLang}">${lang.label}</button>`,
+  ).join('');
+  $('#editor-panels').innerHTML = EDITOR_LANGS.map((lang) => langPanelHtml(section, values, lang, activeLang)).join('');
+  $('#editor-common').innerHTML = config.fields
+    .filter((f) => !f.i18n)
+    .map((f) => fieldControl(f, f.name, values[f.name] || '', f.required))
+    .join('');
 }
 
 function openEditor(item) {
-  const section = state.section;
-  const config = ADMIN_SECTIONS[section];
-  const dialog = $('#editor');
   state.editingId = item ? item.id : null;
-
-  $('#editor-title').textContent = item ? `Изменить: ${item[config.titleField] || ''}` : config.newTitle;
-  $('#editor-published').checked = item ? isPublished(item) : false;
-  $('#editor-langs').innerHTML = EDITOR_LANGS.map(
-    (lang) => `<button type="button" class="chip" data-lang-tab="${lang.code}" aria-pressed="${lang.code === 'ru'}">${lang.label}</button>`,
-  ).join('');
-  $('#editor-panels').innerHTML = EDITOR_LANGS.map((lang) => langPanelHtml(section, item, lang)).join('');
-  $('#editor-common').innerHTML = config.fields
-    .filter((f) => !f.i18n)
-    .map((f) => fieldControl(f, f.name, item ? item[f.name] || '' : '', f.required))
-    .join('');
+  renderEditor(item || {}, item ? isPublished(item) : false);
   setEditorStatus('');
-  dialog.showModal();
+  $('#editor').showModal();
   $('#editor-panels input, #editor-panels textarea')?.focus();
 }
 
@@ -438,12 +461,13 @@ function collectEditor() {
 function validateEditor(data) {
   for (const f of ADMIN_SECTIONS[state.section].fields) {
     const value = data[f.name];
-    if (f.required && !value) return [`Заполните поле «${f.label}»${f.i18n ? ' (RU)' : ''}.`, 'ru'];
+    const label = tr(f.label);
+    if (f.required && !value) return [tr('admin.errRequired', { label, lang: f.i18n ? ' (RU)' : '' }), 'ru'];
     if (!value) continue;
-    if (f.type === 'url' && !safeUrl(value)) return [`«${f.label}»: ссылка должна начинаться с https://`, null];
-    if (f.type === 'image' && !safeImage(value)) return [`«${f.label}»: укажите https://… или путь вида img/team/фото.jpg`, null];
-    if (f.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) return ['Проверьте адрес e-mail.', null];
-    if (f.type === 'year' && !/^\d{4}$/.test(value)) return ['Год — четыре цифры, например 2025.', null];
+    if (f.type === 'url' && !safeUrl(value)) return [tr('admin.errUrl', { label }), null];
+    if (f.type === 'image' && !safeImage(value)) return [tr('admin.errImage', { label }), null];
+    if (f.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) return [tr('admin.errEmail'), null];
+    if (f.type === 'year' && !/^\d{4}$/.test(value)) return [tr('admin.errYear'), null];
   }
   return ['', null];
 }
@@ -459,7 +483,7 @@ async function saveEditor(ev) {
 
   const button = $('#editor-form [type="submit"]');
   button.disabled = true;
-  setEditorStatus('Сохраняем…');
+  setEditorStatus(tr('admin.saving'));
   try {
     const record = state.editingId
       ? await AdminStore.update(state.section, state.editingId, data)
@@ -467,7 +491,7 @@ async function saveEditor(ev) {
     replaceItem(state.section, record);
     renderAll();
     $('#editor').close();
-    toast(state.editingId ? 'Изменения сохранены.' : 'Запись добавлена.');
+    toast(tr(state.editingId ? 'admin.toastSaved' : 'admin.toastAdded'));
   } catch (err) {
     if (err.code === 'auth') {
       $('#editor').close();
@@ -492,12 +516,31 @@ function setupEditor() {
   });
 }
 
+/* ---------- Смена языка интерфейса ---------- */
+
+function onLangChange() {
+  const status = $('#login-status');
+  if (status.dataset.key) status.textContent = tr(status.dataset.key);
+  if (!$('#workspace').hidden) {
+    renderModeBadge();
+    renderAll();
+  }
+  const dialog = $('#editor');
+  if (dialog.open) {
+    const activeLang = document.querySelector('[data-lang-tab][aria-pressed="true"]')?.dataset.langTab || 'ru';
+    const values = collectEditor();
+    renderEditor(values, values.status === 'published', activeLang);
+  }
+}
+
 /* ---------- Запуск ---------- */
 
 document.addEventListener('DOMContentLoaded', async () => {
   setupLogin();
   setupList();
   setupEditor();
+  document.querySelectorAll('[data-year]').forEach((el) => { el.textContent = new Date().getFullYear(); });
+  document.addEventListener('nv:langchange', onLangChange);
   if (AdminStore.restore()) await enterWorkspace();
   else showScreen('login');
 });

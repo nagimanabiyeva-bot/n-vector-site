@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Админ-панель — N-VECTOR Consulting Services</title>
+  <meta name="description" content="Управление содержимым сайта N-VECTOR Consulting Services.">
   <meta name="robots" content="noindex, nofollow">
   <meta name="theme-color" content="#262a36">
   <link rel="icon" href="img/logo-mark.svg" type="image/svg+xml">
@@ -14,75 +15,97 @@
   <link rel="stylesheet" href="css/admin.css">
 </head>
 <body class="admin" data-page="admin">
-  <a class="skip-link" href="#main">Перейти к содержанию</a>
+  <a class="skip-link" href="#main" data-i18n="skip">Перейти к содержанию</a>
+
+  <!-- Верхняя тёмная полоса — как на сайте; переключатель языков справа -->
+  <div class="topbar">
+    <div class="wrap topbar-inner">
+      <div class="topbar-item">
+        <span class="topbar-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1Z"/></svg></span>
+        <span class="topbar-text"><b data-i18n="admin.topManageTitle">Управление сайтом</b><small data-i18n="admin.topManageText">Команда, проекты, мероприятия</small></span>
+      </div>
+      <a class="topbar-item topbar-item--focus" href="index.html" target="_blank" rel="noopener">
+        <span class="topbar-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg></span>
+        <span class="topbar-text"><b data-i18n="admin.topSiteTitle">Пользовательская версия</b><small data-i18n="admin.topSiteText">Открыть сайт для просмотра</small></span>
+      </a>
+      <div class="lang-switch" role="group" aria-label="Язык сайта" data-i18n-attr="aria-label:lang.label">
+        <button type="button" data-lang="en" lang="en" aria-pressed="false">EN</button>
+        <button type="button" data-lang="ru" lang="ru" aria-pressed="true">RU</button>
+        <button type="button" data-lang="kz" lang="kk" aria-pressed="false">KZ</button>
+      </div>
+    </div>
+  </div>
 
   <header class="site-header">
     <div class="wrap header-inner">
-      <a class="brand" href="admin.html" aria-label="Админ-панель N-VECTOR">
-        <img src="img/logo-mark.svg" alt="" width="30" height="36">
-        <span class="brand-text"><span class="brand-name">N-VECTOR</span><span class="brand-sub">Админ-панель</span></span>
+      <a class="brand" href="admin.html" aria-label="Админ-панель N-VECTOR" data-i18n-attr="aria-label:admin.brandLabel">
+        <img src="img/logo-mark.svg" alt="" width="34" height="41">
+        <span class="brand-text"><span class="brand-name">N-VECTOR</span><span class="brand-sub" data-i18n="admin.brandSub">Админ-панель</span></span>
       </a>
       <div class="admin-header-actions" id="header-actions" hidden>
         <span class="mode-badge" id="mode-badge"></span>
-        <a class="btn btn-ghost btn-sm" id="open-site" href="index.html" target="_blank" rel="noopener">Открыть сайт ↗</a>
-        <button type="button" class="btn btn-ghost btn-sm" id="logout">Выйти</button>
+        <a class="btn btn-ghost btn-sm" id="open-site" href="index.html" target="_blank" rel="noopener" data-i18n="admin.openSite">Открыть сайт ↗</a>
+        <button type="button" class="btn btn-sm" id="logout" data-i18n="admin.logout">Выйти</button>
       </div>
     </div>
   </header>
 
   <main id="main">
     <!-- Вход -->
-    <section class="wrap admin-login" id="login" aria-labelledby="login-title">
-      <div class="panel admin-login-card">
-        <p class="eyebrow">Управление сайтом</p>
-        <h1 id="login-title">Вход в админ-панель</h1>
-        <p class="lede">Здесь добавляют и редактируют команду, проекты и мероприятия. Посетители сайта видят только опубликованные записи.</p>
+    <section class="admin-login-band" id="login" aria-labelledby="login-title">
+      <img class="admin-login-bg" src="img/scene/chip-team.jpg" alt="" aria-hidden="true" width="640" height="380">
+      <div class="wrap admin-login">
+        <div class="panel admin-login-card">
+          <p class="eyebrow" data-i18n="admin.loginEyebrow">Управление сайтом</p>
+          <h1 id="login-title" data-i18n="admin.loginTitle">Вход в админ-панель</h1>
+          <p class="lede" data-i18n="admin.loginLede">Здесь добавляют и редактируют команду, проекты и мероприятия. Посетители сайта видят только опубликованные записи.</p>
 
-        <form id="login-form" class="add-form admin-login-form" novalidate hidden>
-          <div class="field">
-            <label for="admin-key">Ключ администратора</label>
-            <input id="admin-key" name="admin-key" type="password" autocomplete="current-password" required>
-            <span class="field-hint">Ключ задаётся в настройках Google Apps Script (свойство ADMIN_KEY).</span>
+          <form id="login-form" class="add-form admin-login-form" novalidate hidden>
+            <div class="field">
+              <label for="admin-key" data-i18n="admin.keyLabel">Ключ администратора</label>
+              <input id="admin-key" name="admin-key" type="password" autocomplete="current-password" required>
+              <span class="field-hint" data-i18n="admin.keyHint">Ключ задаётся в настройках Google Apps Script (свойство ADMIN_KEY).</span>
+            </div>
+            <div class="form-actions"><button type="submit" class="btn" data-i18n="admin.loginBtn">Войти</button></div>
+          </form>
+
+          <div id="no-backend" class="admin-notice" hidden>
+            <p data-i18n-html="admin.noBackendHtml"></p>
+            <button type="button" class="btn" id="demo-start" data-i18n="admin.demoStart">Открыть демо-режим</button>
           </div>
-          <div class="form-actions"><button type="submit" class="btn">Войти</button></div>
-        </form>
 
-        <div id="no-backend" class="admin-notice" hidden>
-          <p><b>Google Таблица ещё не подключена.</b> Можно работать в демо-режиме: правки сохранятся в этом браузере, их видно в предпросмотре сайта, а готовые данные можно скачать файлом <code>fallback.js</code> и заменить им <code>data/fallback.js</code>.</p>
-          <button type="button" class="btn" id="demo-start">Открыть демо-режим</button>
+          <p class="form-status" id="login-status" role="status" aria-live="polite"></p>
         </div>
-
-        <p class="form-status" id="login-status" role="status" aria-live="polite"></p>
       </div>
     </section>
 
     <!-- Рабочая область -->
     <section class="wrap admin-workspace" id="workspace" hidden aria-labelledby="section-title">
       <div class="admin-notice" id="mode-banner" hidden>
-        <p><b>Демо-режим.</b> Изменения хранятся только в этом браузере и видны по кнопке «Открыть сайт». Чтобы перенести их на настоящий сайт, нажмите «Скачать fallback.js» и замените файл <code>data/fallback.js</code> — или подключите Google Таблицу.</p>
+        <p data-i18n-html="admin.demoBannerHtml"></p>
       </div>
 
-      <nav class="admin-tabs" id="section-tabs" aria-label="Разделы сайта"></nav>
+      <nav class="admin-tabs" id="section-tabs" aria-label="Разделы сайта" data-i18n-attr="aria-label:admin.tabsLabel"></nav>
 
       <div class="admin-toolbar">
-        <h1 class="admin-section-title" id="section-title">Команда</h1>
-        <button type="button" class="btn" id="add-item"><span class="plus">+</span> Добавить</button>
+        <h1 class="admin-section-title" id="section-title"></h1>
+        <button type="button" class="btn" id="add-item"><span class="plus">+</span> <span data-i18n="admin.add">Добавить</span></button>
       </div>
 
       <div class="admin-controls">
-        <div class="filters" id="status-filters" role="group" aria-label="Фильтр по статусу"></div>
+        <div class="filters" id="status-filters" role="group" aria-label="Фильтр по статусу" data-i18n-attr="aria-label:admin.statusFilterLabel"></div>
         <label class="admin-search">
-          <span class="sr-only">Поиск по разделу</span>
-          <input type="search" id="search" placeholder="Поиск…" autocomplete="off">
+          <span class="sr-only" data-i18n="admin.searchLabel">Поиск по разделу</span>
+          <input type="search" id="search" placeholder="Поиск…" data-i18n-attr="placeholder:admin.searchPlaceholder" autocomplete="off">
         </label>
       </div>
 
       <div class="admin-list" id="admin-list" aria-live="polite"></div>
 
       <div class="admin-footer-actions">
-        <button type="button" class="btn btn-ghost btn-sm" id="reload">↻ Обновить</button>
-        <button type="button" class="btn btn-ghost btn-sm" id="export">⇩ Скачать fallback.js</button>
-        <button type="button" class="btn btn-danger btn-sm" id="reset-demo" hidden>Сбросить демо-данные</button>
+        <button type="button" class="btn btn-ghost btn-sm" id="reload" data-i18n="admin.reload">↻ Обновить</button>
+        <button type="button" class="btn btn-ghost btn-sm" id="export" data-i18n="admin.export">⇩ Скачать fallback.js</button>
+        <button type="button" class="btn btn-danger btn-sm" id="reset-demo" hidden data-i18n="admin.resetDemo">Сбросить демо-данные</button>
       </div>
     </section>
   </main>
@@ -92,32 +115,32 @@
     <form id="editor-form" novalidate>
       <div class="dialog-head">
         <h2 id="editor-title"></h2>
-        <button type="button" class="dialog-close" data-close aria-label="Закрыть">×</button>
+        <button type="button" class="dialog-close" data-close aria-label="Закрыть" data-i18n-attr="aria-label:admin.close">×</button>
       </div>
       <div class="add-form">
         <label class="switch">
           <input type="checkbox" id="editor-published">
           <span class="switch-track" aria-hidden="true"></span>
-          <span>Опубликовано на сайте</span>
+          <span data-i18n="admin.published">Опубликовано на сайте</span>
         </label>
 
         <div class="editor-section">
           <div class="editor-section-head">
-            <span class="editor-section-title">Тексты</span>
-            <div class="filters editor-langs" id="editor-langs" role="group" aria-label="Язык текста"></div>
+            <span class="editor-section-title" data-i18n="admin.texts">Тексты</span>
+            <div class="filters editor-langs" id="editor-langs" role="group" aria-label="Язык текста" data-i18n-attr="aria-label:admin.textLang"></div>
           </div>
           <div id="editor-panels"></div>
         </div>
 
         <div class="editor-section">
-          <span class="editor-section-title">Общие поля</span>
+          <span class="editor-section-title" data-i18n="admin.commonFields">Общие поля</span>
           <div class="fields" id="editor-common"></div>
         </div>
 
         <p class="form-status" id="editor-status" role="status" aria-live="polite"></p>
         <div class="form-actions">
-          <button type="button" class="btn btn-ghost" data-close>Отмена</button>
-          <button type="submit" class="btn">Сохранить</button>
+          <button type="button" class="btn btn-ghost" data-close data-i18n="admin.cancel">Отмена</button>
+          <button type="submit" class="btn" data-i18n="admin.save">Сохранить</button>
         </div>
       </div>
     </form>
@@ -125,6 +148,34 @@
 
   <div class="toast-stack" id="toasts" aria-live="polite"></div>
 
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <a class="footer-brand" href="index.html" aria-label="N-VECTOR Consulting Services — на главную" data-i18n-attr="aria-label:brand.home">
+        <img src="img/logo-mark.svg" alt="" width="58" height="70">
+        <span class="brand-text"><span class="brand-name">N-VECTOR</span><span class="brand-sub">Consulting Services</span></span>
+      </a>
+      <div class="footer-info">
+        <p class="footer-company" data-i18n="company">ТОО «N-VECTOR Consulting Services»</p>
+        <p data-i18n="footer.about">Научно-исследовательские и опытно-конструкторские работы в сфере передовых технологий, машинного обучения и искусственного интеллекта.</p>
+        <nav class="footer-nav" aria-label="Основная навигация" data-i18n-attr="aria-label:nav.label">
+          <a href="index.html" data-i18n="nav.home">О компании</a>
+          <a href="team.html" data-i18n="nav.team">Команда</a>
+          <a href="projects.html" data-i18n="nav.projects">Проекты</a>
+          <a href="events.html" data-i18n="nav.events">Мероприятия</a>
+          <a href="contacts.html" data-i18n="nav.contacts">Контакты</a>
+        </nav>
+        <p class="footer-copy">© <span data-year></span> <span data-i18n="company">ТОО «N-VECTOR Consulting Services»</span></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="data/i18n/ru.js"></script>
+  <script src="data/i18n/en.js"></script>
+  <script src="data/i18n/kz.js"></script>
+  <script src="data/i18n/admin-ru.js"></script>
+  <script src="data/i18n/admin-en.js"></script>
+  <script src="data/i18n/admin-kz.js"></script>
+  <script src="js/i18n.js"></script>
   <script src="js/shared.js"></script>
   <script src="data/fallback.js"></script>
   <script src="js/admin-store.js"></script>
